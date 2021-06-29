@@ -26,6 +26,10 @@ export const goToSearch = (history) => {
     history.push('/busca')
 }
 
+export const goToProfile = (history) => {
+    history.push('/perfil')
+}
+
 export const goBack = (history) => {
     history.goBack()
 }
