@@ -5,7 +5,7 @@ import Tab from '@material-ui/core/Tab';
 
 const RestaurantTypeTabs = () => {
 
-    const [value, setValue] = useState(0)
+    const [value, setValue] = useState(false);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -28,12 +28,12 @@ const RestaurantTypeTabs = () => {
                   }}
                 
             >
-                <Tab label="Burger"  />
-                <Tab label="Asiática" />
-                <Tab label="Massas" />
-                <Tab label="Saudável" />
-                <Tab label="Vegetariana" />
-                <Tab label="Japonesa" />
+                <Tab label="Burger" value="burger" />
+                <Tab label="Asiática" value="asiatica" />
+                <Tab label="Massas" value="massas" />
+                <Tab label="Saudável" value="saudavel" />
+                <Tab label="Vegetariana" value="vegetariana" />
+                <Tab label="Japonesa" value="japonesa" />
             </Tabs>
         </div>
     );

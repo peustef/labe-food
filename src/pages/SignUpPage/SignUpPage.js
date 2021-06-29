@@ -1,98 +1,158 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import { Main, Grid } from './style'
+import React, { useState } from 'react';
+import { Main, ContainerForm, Input, InputPassword, SendButton } from './style'
 import logo from '../../assets/logo.png'
-import TextField from '@material-ui/core/TextField';
 import { useHistory } from 'react-router-dom';
 import useForm from '../../hooks/useForm'
-
+import { signUp } from '../../services/user';
+import { InputLabel, IconButton, InputAdornment, OutlinedInput, CircularProgress } from '@material-ui/core'
+import { Visibility, VisibilityOff } from '@material-ui/icons';
 
 
 const SignUpPage = () => {
-  const history = useHistory();
-  const [form, onChange, clear] = useForm({
-    name: "",
-    email: "",
-    cpf: "",
-    password: "",
-  });
+    const history = useHistory()
+    const [loading, setLoading] = useState(false)
+    const [confirm, setConfirm] = useState('')
+    const [form, onChange, clear, setForm] = useForm({
+        name: "",
+        email: "",
+        cpf: "",
+        password: "",
+        showPassword: false,
+        showConfirm: false
+    })
 
-  const onSubmitForm = (event) => {
-    event.preventDefault();
-  };
 
-  return (
-    <Main>
-      <img src={logo} />
-      <strong>
-        <p>Cadastrar</p>
-      </strong>
-      <form onSubmit={onSubmitForm}>
-        <Grid item>
-          <TextField
-            type="text"
-            name={"name"}
-            value={form.name}
-            onChange={onChange}
-            required
-            label="Nome"
-            placeholder="Nome e sobrenome"
-            variant="outlined"
-          />
-        </Grid>
-        <Grid item>
-          <TextField
-            type="email"
-            name={"email"}
-            value={form.email}
-            onChange={onChange}
-            required
-            label="E-mail"
-            placeholder="email@email.com"
-            variant="outlined"
-          />
-        </Grid>
-        <Grid item>
-          <TextField
-            name={"cpf"}
-            value={form.cpf}
-            onChange={onChange}
-            required
-            label="CPF"
-            placeholder="000.000.000-00"
-            variant="outlined"
-          />
-        </Grid>
-        <Grid item>
-          <TextField
-            type="password"
-            name={"password"}
-            value={form.password}
-            onChange={onChange}
-            required
-            label="Senha"
-            placeholder="Mínimo 6 caracteres"
-            variant="outlined"
-          />
-        </Grid>
-        <Grid item>
-          <TextField
-            type="password"
-            name
-            value
-            onChange
-            required
-            label="Confirmar"
-            placeholder="Confirme a senha anterior"
-            variant="outlined"
-          />
-        </Grid>
-        <Button variant="contained" color="primary">
-          Criar
-        </Button>
-      </form>
-    </Main>
-  );
+    const handleClickShowPassword = () => {
+        setForm({ ...form, showPassword: !form.showPassword });
+    };
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
+
+    const handleClickShowConfirm = () => {
+        setForm({ ...form, showConfirm: !form.showConfirm });
+    };
+
+    const handleMouseDownConfirm = (event) => {
+        event.preventDefault();
+    };
+
+    const onSubmitForm = (event) => {
+        event.preventDefault()
+        if(form.password !== confirm){
+            alert('Senhas não são iguais')
+        } else {
+            signUp(form, history, setLoading)
+        }
+       
+    }
+
+    const handleConfirm = (e) =>{
+        setConfirm(e.target.value)
+    }
+ 
+
+    return (
+        <Main>
+            <img src={logo} />
+            <strong><p>Cadastrar</p></strong>
+            <ContainerForm onSubmit={onSubmitForm}>
+                <Input
+                    type='text'
+                    name={"name"}
+                    value={form.name}
+                    onChange={onChange}
+                    required
+                    label="Nome"
+                    placeholder="Nome e sobrenome"
+                    variant="outlined" />
+
+
+                <Input
+                    type='email'
+                    name={"email"}
+                    value={form.email}
+                    onChange={onChange}
+                    required
+                    label="E-mail"
+                    placeholder="email@email.com"
+                    variant='outlined' />
+
+                <Input
+                    inputProps={{
+                        maxLength: 14,
+                        pattern: `([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})`
+                    }}
+                    name={"cpf"}
+                    value={form.cpf}
+                    onChange={onChange}
+                    required
+                    label="CPF"
+                    placeholder="000.000.000-00"
+                    variant="outlined" />
+
+                <InputPassword variant="outlined">
+                    <InputLabel>Senha*</InputLabel>
+                    <OutlinedInput
+                        name='password'
+                        label="Senha"
+                        type={form.showPassword ? 'text' : 'password'}
+                        value={form.password}
+                        onChange={onChange}
+                        placeholder={'Mínimo 6 caracteres'}
+                        required
+                        inputProps={{ minLength: 6 }}
+                        endAdornment={
+                            <InputAdornment position='end'>
+                                <IconButton
+                                    edge='end'
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
+                                >
+                                    {form.showPassword ? <Visibility /> : <VisibilityOff />}
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                        labelWidth={65}
+                    />
+                </InputPassword>
+                <InputPassword variant="outlined">
+                    <InputLabel>Confirmar*</InputLabel>
+                    <OutlinedInput
+                        name='confirm-password'
+                        type={form.showConfirm ? 'text' : 'password'}
+                        value={form.confirm}
+                        onChange={handleConfirm}
+                        required
+                        label="Confirmar"
+                        placeholder="Confirme a senha anterior"
+                        variant="outlined"
+                        endAdornment={
+                            <InputAdornment position='end'>
+                                <IconButton
+                                    edge='end'
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowConfirm}
+                                    onMouseDown={handleMouseDownConfirm}
+                                >
+                                    {form.showConfirm ? <Visibility /> : <VisibilityOff />}
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                        labelWidth={65}
+                    />
+                </InputPassword>
+                <SendButton
+                    type='submit'
+                    variant="contained"
+                    color="primary">
+                    {loading ? <CircularProgress color={'inherit'} size={24} /> : 'Entrar'}
+                </SendButton>
+            </ContainerForm>
+        </Main>
+    );
 };
 
 export default SignUpPage;

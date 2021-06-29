@@ -5,11 +5,10 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { StyledCard, DeliveryInfosContainer } from "./style";
 
-const RestaurantCard = (props) => {
-
-  return (
-    <div>
-      <StyledCard key={props.id}>
+const RestaurantDetailsCard = (props) => {
+    return (
+        
+             <StyledCard >
         <CardActionArea>
           <CardMedia
             component="img"
@@ -24,18 +23,30 @@ const RestaurantCard = (props) => {
             </Typography>
 
             <DeliveryInfosContainer>
+             
+              <Typography variant="body2" color="secondary" component="p">
+              {props.category}
+              </Typography>
+              
+              <div>
               <Typography variant="body2" color="secondary" component="p">
                 {props.deliveryTime - 10} - {props.deliveryTime} min
               </Typography>
               <Typography variant="body2" color="secondary" component="p">
                 Frete R${props.shipping},00
               </Typography>
+              </div>
+                           
+              <Typography variant="body2" color="secondary" component="p">
+              {props.address}
+              </Typography>
+              
             </DeliveryInfosContainer>
           </CardContent>
         </CardActionArea>
       </StyledCard>
-    </div>
-  );
-};
+        
+    )
+}
 
-export default RestaurantCard;
+export default RestaurantDetailsCard
