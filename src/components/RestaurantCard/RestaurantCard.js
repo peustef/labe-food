@@ -4,11 +4,12 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { StyledCard, DeliveryInfosContainer } from "./style";
+import { goToRestaurant } from "../../routes/coordinator";
 
 const RestaurantCard = (props) => {
 
   return (
-    <div>
+    <div onClick={() => goToRestaurant(props.history, props.id)}>
       <StyledCard key={props.id}>
         <CardActionArea>
           <CardMedia

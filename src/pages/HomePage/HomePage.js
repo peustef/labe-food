@@ -15,7 +15,6 @@ const HomePage = () => {
     const history = useHistory()
     const { states } = useContext(GlobalStateContext);
 
-
     const restaurantsList = states.restaurants.map((restaurant) => {
         return (
             <RestaurantCard
@@ -25,6 +24,8 @@ const HomePage = () => {
                 deliveryTime={restaurant.deliveryTime}
                 shipping={restaurant.shipping}
                 logoUrl={restaurant.logoUrl}
+                history={history} 
+                id={restaurant.id}
             />
         );
     });
