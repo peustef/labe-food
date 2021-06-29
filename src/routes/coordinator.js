@@ -15,7 +15,7 @@ export const goToChart = (history) => {
 }
 
 export const goToSignUpAdress = (history) => {
-    history.push('/cadastro/endereço')
+    history.push('/cadastro/endereco')
 }
 
 export const goToRestaurant = (history, id) => {
