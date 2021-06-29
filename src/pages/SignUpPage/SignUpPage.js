@@ -8,7 +8,7 @@ import logo from '../../assets/logo.png'
 const SignUpPage = () => {
     return (
         <Main>
-            <img src={logo}/>
+            <img src={logo} alt="logo"/>
             <p>Cadastrar</p>
             <form>
             <TextField label="Nome*" placeholder="Nome e sobrenome" variant="outlined" />
