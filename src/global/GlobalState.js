@@ -23,7 +23,7 @@ const GlobalState = (props) => {
     }
 
     return <GlobalStateContext.Provider
-        value={ setters, states }
+        value={{ setters, states }}
     >
         {props.children}
     </GlobalStateContext.Provider>
