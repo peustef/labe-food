@@ -13,7 +13,7 @@ function useForm(initialValue) {
     const clear = () => {
         setForm(initialValue)
     }
-    return [form, onChange, clear]
+    return [form, onChange, clear, setForm]
 }
 
 export default useForm;
