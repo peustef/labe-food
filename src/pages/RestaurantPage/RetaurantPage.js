@@ -12,7 +12,7 @@ const RetaurantPage = () => {
     const { setters, states, requests } = useContext(GlobalStateContext);
 
     useLayoutEffect(() => {
-        getRestaurantsDetails(setters.setRestaurantDetail, 1)
+        getRestaurantsDetails(setters.setRestaurantDetail, params.id)
         // fazer no home e no search a passagem de id
     }, [])
 
