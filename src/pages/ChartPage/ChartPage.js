@@ -1,6 +1,6 @@
 import { Typography } from '@material-ui/core';
 import React from 'react';
-import { ContainerAdress, ContainerFood, ContainerInfoCart } from './style';
+import { ContainerAdress, ContainerFood, ContainerInfoCart, ContainerCart } from './style';
 import Payment from '../../components/Payment/Payment'
 import { useHistory } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
@@ -10,7 +10,7 @@ const ChartPage = () => {
     return (
         <div>
 
-            <containerCart>
+            <ContainerCart>
                 <ContainerAdress>
                     <Typography variant={'body1'} color={'secondary'}>Endereço de Entrega</Typography>
                     <Typography variant={'body1'} >Rua Alessandra Vieira, 42</Typography>
@@ -24,7 +24,7 @@ const ChartPage = () => {
                     <Typography variant={'body1'}  >Carrinho Vazio</Typography>
                 </ContainerFood>
                 <Payment />
-            </containerCart>
+            </ContainerCart>
             <Footer history={history} />
         </div>
     );

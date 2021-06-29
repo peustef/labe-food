@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const containerCart = styled.div`
+export const ContainerCart = styled.div`
     display: flex;
     flex-direction: column;
 `
