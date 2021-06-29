@@ -2,7 +2,7 @@ import axios from "axios";
 import { BASE_URL } from "../constants/Urls";
 import { goToHome, goToSignUpAdress } from "../routes/coordinator";
 
-export const login = (body, clear, history, setLoading) => {
+export const login = (body, history, setLoading) => {
   setLoading(true);
   axios
     .post(`${BASE_URL}/login`, body)
@@ -48,9 +48,8 @@ export const createAddress = (body, history, setLoading) => {
         alert(err.response.data.message);
         setLoading(false);
     })
-
-
 }
+
 
 export const logout = () => {
     localStorage.removeItem("token");
