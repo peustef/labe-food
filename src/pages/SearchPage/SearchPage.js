@@ -24,8 +24,8 @@ const SearchPage = () => {
   };
 
   useEffect(() => {
-      setters.setLoading(true);
-   const delay = setTimeout(() => {
+    setters.setLoading(true);
+    const delay = setTimeout(() => {
       filter();
       setters.setLoading(false);
     }, 2000);
@@ -36,10 +36,12 @@ const SearchPage = () => {
   const filteredState = filteredRestaurants.map((restaurant) => {
     return (
       <RestaurantCard
+        key={restaurant.id}
         name={restaurant.name}
         title={restaurant.title}
         deliveryTime={restaurant.deliveryTime}
         shipping={restaurant.shipping}
+        logoUrl={restaurant.logoUrl}
       />
     );
   });
@@ -66,7 +68,7 @@ const SearchPage = () => {
       </Box>
 
       <ContainerRestaurantCards>
-        {states.loading === true ? <p>animação carregando por cima</p> : null }
+        {states.loading === true ? <p>animação carregando por cima</p> : null}
         {search && filteredState.length === 0 && states.loading === false ? <p>Não encontramos :(</p> : null}
         {search.length === 0 ? <p>Busque por nome de restaurante</p> : null}
         {search ? filteredState : null}
