@@ -14,6 +14,10 @@ export const goToChart = (history) => {
     history.push('/carrinho')
 }
 
+export const goToSignUpAdress = (history) => {
+    history.push('/cadastro/endereço')
+}
+
 export const goToRestaurant = (history, id) => {
     history.push(`/restaurante/${id}`)
 }

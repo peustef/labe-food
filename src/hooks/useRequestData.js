@@ -11,7 +11,7 @@ const useRequestData = (initialData, url) => {
     const getRequest = () => {
         const header = {
             headers: {
-                Authorization: localStorage.getItem('token')
+                auth: localStorage.getItem('token')
             }
         }
 
@@ -20,7 +20,7 @@ const useRequestData = (initialData, url) => {
                 setData(res.data)
             })
             .catch((err) => {
-                console.log(err.response.data)
+                console.log(err)
                 alert('Ocorreu um erro, tente novamente')
             })
     }
