@@ -28,7 +28,7 @@ const LoginPage = () => {
 
     const submitLogin = (e) => {
         e.preventDefault()
-        login(form, clear, history, setLoading)
+        login(form, history, setLoading)
     }
 
     return (
