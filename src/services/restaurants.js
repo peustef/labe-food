@@ -17,3 +17,18 @@ export const getRestaurants = (setRestaurants) => {
         })
 }
 
+export const getRestaurantsDetails = (setRestaurantDetail, id) => {
+    const header = {
+        headers: {
+            auth: localStorage.getItem('token')
+        }
+    }
+    axios.get(`${BASE_URL}/restaurants/${id}`, header)
+        .then((res) => {
+            setRestaurantDetail(res.data.restaurant)
+        })
+        .catch((err) => {
+            console.log(err)
+            alert(err)
+        })
+}
