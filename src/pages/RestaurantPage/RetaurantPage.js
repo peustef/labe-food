@@ -1,14 +1,17 @@
 import React, { useLayoutEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import RestaurantDetailsCard from '../../components/RestaurantDetailsCard/RestaurantDetailsCard';
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { getRestaurantsDetails } from '../../services/restaurants';
 import ItensCard from '../../components/ItensCard/ItensCard';
 import Typography from '@material-ui/core/Typography';
 import { ItensCont } from './style';
+import Header from '../../components/Header/Header';
+import { goBack } from '../../routes/coordinator';
 
 const RetaurantPage = () => {
     const params = useParams()
+    const history = useHistory()
     const { setters, states, requests } = useContext(GlobalStateContext);
 
     useLayoutEffect(() => {
@@ -51,6 +54,10 @@ const RetaurantPage = () => {
 
     return (
         <div>
+            <Header 
+                buttonLeft={() => goBack(history)}
+                title={'Restaurante'}
+            />
             <RestaurantDetailsCard
                 name={restaurant.name}
                 category={restaurant.category}
