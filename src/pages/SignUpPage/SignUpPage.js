@@ -9,7 +9,6 @@ import { Visibility, VisibilityOff } from '@material-ui/icons';
 
 
 const SignUpPage = () => {
-
     const history = useHistory()
     const [loading, setLoading] = useState(false)
     const [confirm, setConfirm] = useState('')
