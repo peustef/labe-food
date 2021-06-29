@@ -1,9 +1,32 @@
 import styled from "styled-components";
+import { Button, FormControl, TextField } from "@material-ui/core";
 
 
-export const Grid = styled.div`
-    margin:0.5em 0;
+export const SendButton = styled(Button)`
+    width:20.5rem;
 `
+
+
+export const ContainerForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    gap: 15px;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+`
+
+export const InputPassword = styled(FormControl)`
+    width: 100%;
+    margin-top: 10px;
+`
+
+export const Input= styled(TextField)`
+    width: 100%;
+`
+
 
 export const Main = styled.div`
   font-family:'Roboto';
@@ -14,20 +37,7 @@ export const Main = styled.div`
   img{
       margin: 1.5rem 0;
   }
-  form{
-      width:100%;
-      display:flex;
-      justify-content:center;
-      flex-direction:column;
-      align-items:center;
-      input{
-          width:20.5rem;
-      }
-      button{
-          width:22.5rem;
-          height:3.5rem;
-      }
-  }
+  
 `
 
 
