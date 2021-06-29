@@ -11,7 +11,6 @@ import { goBack } from '../../routes/coordinator';
 
 
 const SignUpPage = () => {
-
     const history = useHistory()
     const [loading, setLoading] = useState(false)
     const [confirm, setConfirm] = useState('')
