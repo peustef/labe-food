@@ -10,6 +10,7 @@ import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { useHistory } from 'react-router-dom';
 import { goToSearch } from '../../routes/coordinator';
 import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
 
 const HomePage = () => {
     const history = useHistory()
@@ -32,6 +33,7 @@ const HomePage = () => {
 
     return (
         <div>
+            <Header title={'Ifuture'}/>
             <Box ml={2} mr={2}>
                 <TextField
                     onClick={() => goToSearch(history)}

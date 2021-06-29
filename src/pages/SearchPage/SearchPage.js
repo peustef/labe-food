@@ -8,8 +8,12 @@ import { Box } from "@material-ui/core";
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import useInput from "../../hooks/useInput";
 import { useState } from "react";
+import { goBack } from "../../routes/coordinator";
+import Header from "../../components/Header/Header";
+import { useHistory } from "react-router-dom";
 
 const SearchPage = () => {
+  const history = useHistory()
   const { states, setters } = useContext(GlobalStateContext);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [search, handleSearch] = useInput();
@@ -48,6 +52,10 @@ const SearchPage = () => {
 
   return (
     <div>
+      <Header 
+        buttonLeft={() => goBack(history)}
+        title={'Busca'}
+      />
       <Box ml={2} mr={2}>
         <TextField
           onChange={handleSearch}

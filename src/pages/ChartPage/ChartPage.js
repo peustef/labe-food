@@ -4,12 +4,13 @@ import { ContainerAdress, ContainerFood, ContainerInfoCart, ContainerCart } from
 import Payment from '../../components/Payment/Payment'
 import { useHistory } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
+import Header from '../../components/Header/Header';
 
 const ChartPage = () => {
     const history = useHistory()
     return (
         <div>
-
+            <Header title={'Meu carrinho'}/>
             <ContainerCart>
                 <ContainerAdress>
                     <Typography variant={'body1'} color={'secondary'}>Endereço de Entrega</Typography>
