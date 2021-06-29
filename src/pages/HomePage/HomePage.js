@@ -9,7 +9,7 @@ import { ContainerRestaurantCards } from '../style-Pages/style-Pages';
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { useHistory } from 'react-router-dom';
 import { goToSearch } from '../../routes/coordinator';
-
+import Footer from '../../components/Footer/Footer';
 
 const HomePage = () => {
     const history = useHistory()
@@ -57,6 +57,7 @@ const HomePage = () => {
             <ContainerRestaurantCards>
                 {restaurantsList}
             </ContainerRestaurantCards>
+            <Footer history={history} />
         </div>
 
     );
