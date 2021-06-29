@@ -4,6 +4,8 @@ import RestaurantDetailsCard from '../../components/RestaurantDetailsCard/Restau
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { getRestaurantsDetails } from '../../services/restaurants';
 import ItensCard from '../../components/ItensCard/ItensCard';
+import Typography from '@material-ui/core/Typography';
+import { ItensCont } from './style';
 
 const RetaurantPage = () => {
     const params = useParams()
@@ -11,6 +13,7 @@ const RetaurantPage = () => {
 
     useLayoutEffect(() => {
         getRestaurantsDetails(setters.setRestaurantDetail, 1)
+        // fazer no home e no search a passagem de id
     }, [])
 
     const restaurant = states.restaurantDetail
@@ -23,29 +26,26 @@ const RetaurantPage = () => {
         return index === self.indexOf(elem);
     })
 
-    console.log(filteredList)
+    const itensList = filteredList.map(item => {
+        const list = restaurant.products.filter(prod => prod.category === item)
 
-    const categoriesList = filteredList.map(item => {
+        const productsList = list.map((prod) => {
+            return (
+                <ItensCard
+                    key={prod.id}
+                    name={prod.name}
+                    description={prod.description}
+                    photoUrl={prod.photoUrl}
+                    price={prod.price}
+                />
+            )
+        })
+
         return (
-        <div>
-            <p> {item} </p>
-
-
-
-        </div>
-
-        )
-    })
-
-    const productsList = restaurant && restaurant.products && restaurant.products.map((prod) => {
-        return (
-            <ItensCard
-                key={prod.id}
-                name={prod.name}
-                description={prod.description}
-                photoUrl={prod.photoUrl}
-                price={prod.price}
-            />
+            <ItensCont key={item}>
+                <Typography variant="body1" component="h2"> {item} </Typography>
+                {productsList}
+            </ItensCont>
         )
     })
 
@@ -59,9 +59,7 @@ const RetaurantPage = () => {
                 shipping={restaurant.shipping}
                 address={restaurant.address}
             />
-            {categoriesList}
-            {productsList}
-
+            {itensList}
         </div>
     );
 };

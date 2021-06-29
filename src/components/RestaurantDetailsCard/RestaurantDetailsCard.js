@@ -1,12 +1,9 @@
-import React, { useContext, useEffect } from "react";
-
+import React from "react";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import mockRestCard from "../../assets/mockRestCard.png";
 import { StyledCard, DeliveryInfosContainer } from "./style";
-
 
 const RestaurantDetailsCard = (props) => {
     return (
@@ -17,7 +14,7 @@ const RestaurantDetailsCard = (props) => {
             component="img"
             alt={props.name}
             height="120"
-            image={mockRestCard}
+            image={props.logoUrl}
             title={props.name}
           />
           <CardContent>

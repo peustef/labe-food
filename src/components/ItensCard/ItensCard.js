@@ -3,14 +3,12 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
-
+import { StyledCard,RightButton } from './styled';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        display: 'flex',
+        display: 'flex',       
     },
     details: {
         display: 'flex',
@@ -18,9 +16,10 @@ const useStyles = makeStyles((theme) => ({
     },
     content: {
         flex: '1 0 auto',
+        width: 200
     },
     cover: {
-        width: 100,
+        width: 96,
     },
   
 }));
@@ -30,7 +29,7 @@ const ItensCard = (props) => {
     const theme = useTheme();
 
     return (
-        <Card className={classes.root}>
+        <StyledCard className={classes.root}>
                 <CardMedia
                     className={classes.cover}
                     image={props.photoUrl}
@@ -45,18 +44,15 @@ const ItensCard = (props) => {
                         <Typography variant="body2" color="secondary" component="p">
                         {props.description}
                         </Typography>
-                        
-    
+                            
                         <Typography variant="body2" color="secondary" component="p">
-                           {props.price}
+                          R$ {props.price}
                         </Typography>
     
-                        <button> Add ou Rm </button>
+                        <RightButton> Adicionar</RightButton>
                     </CardContent>
-    
-                </div>
-    
-            </Card>
+                </div>    
+            </StyledCard>
        
     )
 }
