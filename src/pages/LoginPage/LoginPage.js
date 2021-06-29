@@ -6,7 +6,7 @@ import { Typography } from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { goToSignUp } from '../../routes/coordinator';
 import { useHistory } from 'react-router-dom';
-import { login } from '../../services/login';
+import { login } from '../../services/user';
 import useForm from '../../hooks/useForm';
 
 const LoginPage = () => {
