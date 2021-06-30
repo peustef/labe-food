@@ -46,6 +46,7 @@ const SignUpPage = () => {
             alert('Senhas não são iguais')
         } else {
             signUp(form, history, setLoading)
+            clear()
         }
        
     }

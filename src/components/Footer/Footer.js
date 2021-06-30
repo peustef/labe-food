@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
@@ -7,18 +7,11 @@ import { StickFooter, StyledIconButton } from './style';
 
 
 const Footer = ({ history }) => {
-    const [value, setValue] = useState('recents');
-
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
-
-
 
     return (
         <div>
             <StickFooter>
-                <StyledIconButton color="secondary" aria-label="open drawer" onClick={() => goToHome(history)}>
+                <StyledIconButton color="secondary" onClick={() => goToHome(history)}>
                     <HomeOutlinedIcon fontSize="large" />
                 </StyledIconButton>
                 <StyledIconButton color="secondary" onClick={() => goToChart(history)}>
