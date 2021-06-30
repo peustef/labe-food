@@ -27,6 +27,7 @@ const Router = () => {
                 </Route>
                 <Route exact path={'/perfil/editar/endereco'}>
                     <EditAddressPage />
+                </Route>
                 <Route exact path={'/perfil/editar'}>
                     <ProfileEditPage />
                 </Route>

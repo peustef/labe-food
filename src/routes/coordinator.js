@@ -10,6 +10,15 @@ export const goToProfile = (history) => {
     history.push('/perfil')
 }
 
+export const goToProfileEditPage = (history) => {
+    history.push('/perfil/editar')
+}
+
+export const goToEditAddressPage = (history) => {
+    history.push('/perfil/editar/endereco')
+}
+
+
 export const goToSignUp = (history) => {
     history.push('/cadastro')
 }
