@@ -113,7 +113,7 @@ const HomePage = () => {
           {filteredRestaurantsList.length > 0 ? filteredRestaurantsList : restaurantsList}
           </ContainerRestaurantCards>
         {order()}
-      <Footer history={history} />
+      <Footer history={history} colorHome={'primary'}/>
     </div>
   );
 };
