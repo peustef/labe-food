@@ -46,6 +46,8 @@ const SearchPage = () => {
         deliveryTime={restaurant.deliveryTime}
         shipping={restaurant.shipping}
         logoUrl={restaurant.logoUrl}
+        history={history} 
+        id={restaurant.id}
       />
     );
   });
