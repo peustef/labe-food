@@ -14,6 +14,7 @@ import ProfileEditPage from '../pages/ProfileEditPage/ProfileEditPage';
 import { Redirect } from "react-router";
 
 const Router = () => {
+  const token = localStorage.getItem('token')
     return (
         <BrowserRouter>
             <Switch>
