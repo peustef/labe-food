@@ -19,26 +19,27 @@ import {
 import useProtectedPage from "../../hooks/useProtectedPage";
 import { getOrdersHistory } from "../../services/order";
 import { GlobalStateContext } from "../../global/GlobalStateContext";
+import { getProfile } from "../../services/profile";
 
 const ProfilePage = () => {
   useProtectedPage();
   const history = useHistory();
   const { states, setters } = useContext(GlobalStateContext);
-
+  const profile = states.profile
 
   useEffect(() => {
     getOrdersHistory(setters.setOrdersHistory)
+    getProfile(setters.setProfile)
   }, []);
-
 
   return (
     <div>
       <Header title={"Meu Perfil"} />
       <ContainerDetail>
         <div>
-          <Typography variant={"body1"}>Bruna Oliveira</Typography>
-          <Typography variant={"body1"}>bruna_o@gmail.com</Typography>
-          <Typography variant={"body1"}>333.333.333-33</Typography>
+          <Typography variant={"body1"}>{profile.name}</Typography>
+          <Typography variant={"body1"}>{profile.email}</Typography>
+          <Typography variant={"body1"}>{profile.cpf}</Typography>
         </div>
         <ContainerButton onClick={() => goToProfileEditPage(history)}>
           <EditOutlinedIcon />
@@ -50,7 +51,7 @@ const ProfilePage = () => {
             Endereço de Entrega
           </Typography>
           <Typography variant={"body1"}>
-            Rua Alessandra Vieira, 42 - Santana
+            {profile.address}
           </Typography>
         </div>
         <Button onClick={() => goToEditAddressPage(history)}>
