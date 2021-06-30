@@ -3,14 +3,13 @@ import React from 'react';
 import Header from '../../components/Header/Header';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import { ContainerAdress, ContainerButton, ContainerDetail, ContainerOrderHistory, ContainerTitleOrder } from './style';
-import OrderHistory from '../../components/OrderHistoryCard/OrderHistoryCard';
 import OrderHistoryCard from '../../components/OrderHistoryCard/OrderHistoryCard';
 import Footer from '../../components/Footer/Footer';
 import { useHistory } from 'react-router-dom';
 
 const ProfilePage = () => {
     const history = useHistory()
-    
+
     return (
         <div>
             <Header title={'Meu Perfil'} />
