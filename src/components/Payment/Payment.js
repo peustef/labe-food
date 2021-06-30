@@ -1,22 +1,31 @@
 import { Button, FormControl, FormControlLabel, Radio, RadioGroup, Typography } from '@material-ui/core';
-import React from 'react';
+import React, {useContext} from 'react';
 import { ContainerPayment, PaymentInfo, Shipping, SubTotal } from './style';
+import { GlobalStateContext } from "../../global/GlobalStateContext";
 
-const Payment = () => {
+const Payment = (props) => {
     const [value, setValue] = React.useState('female');
+    const { states, setters } = useContext(GlobalStateContext);
 
     const handleChange = (event) => {
         setValue(event.target.value);
     };
 
+    const itemSum =[]
+    const itemValue = states.cart && states.cart.forEach((item) => {
+        itemSum.push(item.price*item.quantity)
+        return itemSum        
+    });
+    const totalValue = itemSum.reduce((a,b)=> a + b, props.shipping)
+  
     return (
         <ContainerPayment>
                 <Shipping>
-                    <Typography variant={'body1'}  >Frete R$0,00</Typography>
+                    <Typography variant={'body1'}  >Frete R${props.shipping},00</Typography>
                 </Shipping>
                 <SubTotal>
                     <Typography variant={'body1'} >SUBTOTAL</Typography>
-                    <Typography variant={'body1'} color={'primary'}>R$00.00</Typography>
+                    <Typography variant={'body1'} color={'primary'}>R${totalValue},00</Typography>
                 </SubTotal>
                 <PaymentInfo>
                     <Typography variant={'body1'} >Forma de Pagamento</Typography>

@@ -8,8 +8,10 @@ import { goToSignUp } from '../../routes/coordinator';
 import { useHistory } from 'react-router-dom';
 import { login } from '../../services/user';
 import useForm from '../../hooks/useForm';
+import useUnprotectedPage from "../../hooks/useUnprotectedPage"
 
 const LoginPage = () => {
+    useUnprotectedPage();
     const history = useHistory()
     const [loading, setLoading] = useState(false)
     const [form, onChange, clear, setForm] = useForm({
@@ -29,11 +31,12 @@ const LoginPage = () => {
     const submitLogin = (e) => {
         e.preventDefault()
         login(form, history, setLoading)
+        clear()
     }
 
     return (
         <ContainerLogin>
-            <img src={Logo} />
+            <img src={Logo} alt="logo" />
             <ContainerForm onSubmit={submitLogin} variant="outlined">
                 <Typography variant={'h6'}>Entrar</Typography>
                 <InputEmail
