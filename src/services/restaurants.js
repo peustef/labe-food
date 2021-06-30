@@ -1,14 +1,19 @@
 import axios from "axios"
 import { BASE_URL } from "../constants/Urls"
 
-const header = {
-    headers: {
-        auth: localStorage.getItem('token')
+export const getHeader = () => {
+    const token = localStorage.getItem('token')
+
+    const header = {
+        headers: {
+            auth: token
+        }
     }
+    return header
 }
 
 export const getRestaurants = (setRestaurants) => {
-    axios.get(`${BASE_URL}/restaurants`, header)
+    axios.get(`${BASE_URL}/restaurants`, getHeader())
         .then((res) => {
             setRestaurants(res.data.restaurants)
         })
@@ -19,7 +24,7 @@ export const getRestaurants = (setRestaurants) => {
 }
 
 export const getRestaurantsDetails = (setRestaurantDetail, id) => {
-    axios.get(`${BASE_URL}/restaurants/${id}`, header)
+    axios.get(`${BASE_URL}/restaurants/${id}`, getHeader())
         .then((res) => {
             setRestaurantDetail(res.data.restaurant)
         })
