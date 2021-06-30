@@ -151,7 +151,7 @@ const SignUpPage = () => {
                     type='submit'
                     variant="contained"
                     color="primary">
-                    {loading ? <CircularProgress color={'inherit'} size={24} /> : 'Entrar'}
+                    {loading ? <CircularProgress color={'inherit'} size={24} /> : 'Criar'}
                 </SendButton>
             </ContainerForm>
         </Main>

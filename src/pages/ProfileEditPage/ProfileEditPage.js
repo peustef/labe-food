@@ -21,11 +21,14 @@ const SignUpPage = () => {
         event.preventDefault()
         editProfile(form, history, setLoading)
     }
- 
+
 
     return (
         <Main>
-            <Header buttonLeft={() => goBack(history)}/>
+            <Header
+                buttonLeft={() => goBack(history)}
+                title={'Editar Perfil'}
+            />
             <ContainerForm onSubmit={onSubmitForm}>
                 <Input
                     type='text'

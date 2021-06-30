@@ -5,4 +5,5 @@ export const ContainerRestaurantCards = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-bottom: 4.5rem;
 `
