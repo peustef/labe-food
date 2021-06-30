@@ -51,15 +51,21 @@ const SearchPage = () => {
         deliveryTime={restaurant.deliveryTime}
         shipping={restaurant.shipping}
         logoUrl={restaurant.logoUrl}
+        history={history} 
+        id={restaurant.id}
       />
     );
   });
 
   return (
     <div>
-      <Header buttonLeft={() => goBack(history)} title={"Busca"} />
+      <Header
+        buttonLeft={() => goBack(history)}
+        title={'Busca'}
+      />
       <Box ml={2} mr={2}>
         <TextField
+          autoFocus
           onChange={handleSearch}
           fullWidth
           margin="normal"

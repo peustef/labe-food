@@ -40,6 +40,7 @@ const RetaurantPage = () => {
                     description={prod.description}
                     photoUrl={prod.photoUrl}
                     price={prod.price}
+                    id={prod.id}
                 />
             )
         })
