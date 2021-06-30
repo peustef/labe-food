@@ -23,7 +23,6 @@ const EditAddressPage = () => {
 
     const onSubmitForm = (event) => {
         event.preventDefault()
-        console.log(form)
         updateAddress(form, history)
         clear()
     };

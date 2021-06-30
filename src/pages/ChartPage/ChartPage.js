@@ -6,10 +6,14 @@ import { useHistory } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import ItensCard from '../../components/ItensCard/ItensCard';
+import useProtectedPage from '../../hooks/useProtectedPage';
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 
 const ChartPage = () => {
     const { states, setters } = useContext(GlobalStateContext);
+
+    useProtectedPage();
+  
     const history = useHistory()
     const restaurant = states.restaurantDetail
 

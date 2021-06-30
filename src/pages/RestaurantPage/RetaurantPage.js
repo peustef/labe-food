@@ -8,15 +8,18 @@ import Typography from '@material-ui/core/Typography';
 import { ItensCont } from './style';
 import Header from '../../components/Header/Header';
 import { goBack } from '../../routes/coordinator';
+import useProtectedPage from '../../hooks/useProtectedPage';
 
 const RetaurantPage = () => {
+    useProtectedPage();
     const params = useParams()
     const history = useHistory()
-    const { setters, states, requests } = useContext(GlobalStateContext);
+    const { setters, states } = useContext(GlobalStateContext);
 
     useLayoutEffect(() => {
-        getRestaurantsDetails(setters.setRestaurantDetail, params.id)       
-    }, [])
+        getRestaurantsDetails(setters.setRestaurantDetail, params.id)
+    }, [setters.setRestaurantDetail, params.id])
+
 
     const restaurant = states.restaurantDetail
     const categories = []

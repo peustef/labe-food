@@ -8,9 +8,11 @@ import { InputLabel, IconButton, InputAdornment, OutlinedInput, CircularProgress
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import Header from '../../components/Header/Header';
 import { goBack } from '../../routes/coordinator';
+import useUnprotectedPage from '../../hooks/useUnprotectedPage';
 
 
 const SignUpPage = () => {
+    useUnprotectedPage();
     const history = useHistory()
     const [loading, setLoading] = useState(false)
     const [confirm, setConfirm] = useState('')
@@ -46,6 +48,7 @@ const SignUpPage = () => {
             alert('Senhas não são iguais')
         } else {
             signUp(form, history, setLoading)
+            clear()
         }
        
     }
@@ -151,7 +154,7 @@ const SignUpPage = () => {
                     type='submit'
                     variant="contained"
                     color="primary">
-                    {loading ? <CircularProgress color={'inherit'} size={24} /> : 'Entrar'}
+                    {loading ? <CircularProgress color={'inherit'} size={24} /> : 'Criar'}
                 </SendButton>
             </ContainerForm>
         </Main>

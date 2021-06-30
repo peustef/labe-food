@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+
+import React, { useContext, useEffect, useState } from 'react';
 import RestaurantCard from '../../components/RestaurantCard/RestaurantCard';
 import RestaurantTypeTabs from '../../components/RestaurantTypeTabs/RestaurantTypeTabs';
 import { TextField } from '@material-ui/core';
@@ -11,10 +12,31 @@ import { useHistory } from 'react-router-dom';
 import { goToSearch } from '../../routes/coordinator';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
+import ActiveOrder from '../../components/ActiveOrder/ActiveOrder';
+import { getRestaurants } from "../../services/restaurants";
+import useProtectedPage from "../../hooks/useProtectedPage";
 
 const HomePage = () => {
-    const history = useHistory()
-    const { states } = useContext(GlobalStateContext);
+  useProtectedPage();
+  const history = useHistory();
+  const [filteredCategoryRestaurants, setFilteredCategoryRestaurants] = useState([])
+  const { states, setters } = useContext(GlobalStateContext);
+
+
+    const actOrder = states.activeOrder
+
+    // console.log(actOrder)
+
+    const order = () =>{
+        if (actOrder !== null){
+            return (
+                <ActiveOrder 
+                name={actOrder.restaurantName}
+                price={actOrder.totalPrice}
+                />
+            )
+        }
+    }
 
     const restaurantsList = states.restaurants.map((restaurant) => {
         return (
@@ -31,39 +53,69 @@ const HomePage = () => {
         );
     });
 
+
+  const filter = () => {
+    if (states.restaurants && states.restaurants.length > 0) {
+      const filtered = states.restaurants.filter((restaurant) => {
+        return restaurant.category.includes(states.currentCategory);
+      });
+      setFilteredCategoryRestaurants([...filtered]);
+    }
+  };
+
+
+  const filteredRestaurantsList = filteredCategoryRestaurants.map((restaurant) => {
     return (
-        <div>
-            <Header title={'Ifuture'}/>
-            <Box ml={2} mr={2}>
-                <TextField
-                    onClick={() => goToSearch(history)}
-                    fullWidth
-                    margin='normal'
-                    placeholder="Busca"
-                    id="search-input"
-                    variant='outlined'
-                    color="secondary"
-                    InputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">
-                                <SearchIcon color="secondary" />
-                            </InputAdornment>
-                        ),
-                    }}
-                />
-            </Box>
-            <Box ml={1}>
-                <RestaurantTypeTabs />
-            </Box>
-
-
-            <ContainerRestaurantCards>
-                {restaurantsList}
-            </ContainerRestaurantCards>
-            <Footer history={history} />
-        </div>
-
+      <RestaurantCard
+        key={restaurant.id}
+        name={restaurant.name}
+        title={restaurant.title}
+        deliveryTime={restaurant.deliveryTime}
+        shipping={restaurant.shipping}
+        logoUrl={restaurant.logoUrl}
+        history={history}
+        id={restaurant.id}
+      />
     );
+  });
+
+  useEffect(() => {
+    getRestaurants(setters.setRestaurants);
+    filter();
+  }, [states.currentCategory]);
+
+  return (
+    <div>
+      <Header title={"Ifuture"} />
+      <Box ml={2} mr={2}>
+        <TextField
+          onClick={() => goToSearch(history)}
+          fullWidth
+          margin="normal"
+          placeholder="Busca"
+          id="search-input"
+          variant="outlined"
+          color="secondary"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon color="secondary" />
+              </InputAdornment>
+            ),
+          }}
+        />
+      </Box>
+      <Box ml={1}>
+        <RestaurantTypeTabs />
+      </Box>
+
+      <ContainerRestaurantCards>
+          {filteredRestaurantsList.length > 0 ? filteredRestaurantsList : restaurantsList}
+          </ContainerRestaurantCards>
+        {order()}
+      <Footer history={history} />
+    </div>
+  );
 };
 
 export default HomePage;

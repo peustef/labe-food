@@ -11,14 +11,19 @@ import RestaurantPage from '../pages/RestaurantPage/RetaurantPage';
 import ProfilePage from '../pages/ProfilePage/ProfilePage';
 import EditAddressPage from '../pages/EditAdressPage/EditAddressPage';
 import ProfileEditPage from '../pages/ProfileEditPage/ProfileEditPage';
+import { Redirect } from "react-router";
 
 const Router = () => {
+  const token = localStorage.getItem('token')
     return (
         <BrowserRouter>
             <Switch>
-                <Route exact path={'/'}>
-                    <HomePage />
-                </Route>
+            <Route exact path="/">
+          {token ? <Redirect to="/home" /> : <Redirect to="/login" />}
+        </Route>
+        <Route exact path="/home">
+            <HomePage />
+        </Route>
                 <Route exact path={'/login'}>
                     <LoginPage />
                 </Route>
@@ -52,6 +57,7 @@ const Router = () => {
             </Switch>
         </BrowserRouter>
     );
+
 };
 
 export default Router;
