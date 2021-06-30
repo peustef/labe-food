@@ -12,6 +12,6 @@ const theme = createMuiTheme({
             contrastText: "white"
         },
     },
-})
+});
 
 export default theme
