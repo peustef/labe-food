@@ -62,7 +62,7 @@ const ChartPage = () => {
 
                 <Payment shipping={restaurant.shipping} />
             </ContainerCart>
-            <Footer history={history} />
+            <Footer history={history} colorShopping={'primary'}/>
         </div>
     );
 };

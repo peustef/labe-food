@@ -64,7 +64,7 @@ const ProfilePage = () => {
         </ContainerTitleOrder>
         <OrderHistoryCard />
       </ContainerOrderHistory>
-      <Footer history={history} />
+      <Footer history={history} colorProfile={'primary'}/>
     </div>
   );
 };
