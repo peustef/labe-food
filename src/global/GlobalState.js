@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { getRestaurants } from '../services/restaurants';
 import { getActiveOrders } from '../services/order';
 
+
 const GlobalState = (props) => {
 
     const [cart, setCart] = useState([])
@@ -17,6 +18,8 @@ const GlobalState = (props) => {
         getRestaurants(setRestaurants);
         getActiveOrders(setActiveOrder)
        }, []);
+  
+    const [currentCategory, setCurrentCategory] = useState("")
 
     const setters = {
         setCart,
@@ -24,8 +27,8 @@ const GlobalState = (props) => {
         setRestaurantDetail,
         setRestaurants,
         setLoading,
-        setActiveOrder
-    }
+        setActiveOrder,
+        setCurrentCategory
 
     const states = {
         cart,
@@ -33,7 +36,9 @@ const GlobalState = (props) => {
         profile,
         restaurantDetail,
         loading,
-        activeOrder
+        activeOrder,
+        currentCategory
+
     }
 
     return <GlobalStateContext.Provider

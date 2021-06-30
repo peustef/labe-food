@@ -2,11 +2,18 @@ import axios from "axios";
 import { BASE_URL } from "../constants/Urls";
 import { goToHome, goToProfile, goToSignUpAdress } from "../routes/coordinator";
 
-const header = {
-    headers: {
-        auth: localStorage.getItem('token')
+export const getHeader = () => {
+    const token = localStorage.getItem('token')
+
+    const header = {
+        headers: {
+            auth: token
+        }
     }
+    return header
 }
+
+
 
 export const login = (body, history, setLoading) => {
     setLoading(true);
@@ -42,7 +49,7 @@ export const signUp = (body, history, setLoading) => {
 export const createAddress = (body, history, setLoading) => {
     setLoading(true);
     axios
-        .put(`${BASE_URL}/address`, body)
+        .put(`${BASE_URL}/address`, body, getHeader())
         .then((res) => {
             localStorage.removeItem("token")
             localStorage.setItem("token", res.data.token);
@@ -59,7 +66,7 @@ export const createAddress = (body, history, setLoading) => {
 export const updateAddress = (body, history) => {
 
     axios
-        .put(`${BASE_URL}/address`, body, header)
+        .put(`${BASE_URL}/address`, body, getHeader())
         .then((res) => {
             alert("Endereço salvo!")
             goToProfile(history);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "@material-ui/core/Button";
 import { Main, Grid } from "./style";
 import logo from "../../assets/logo.png";
@@ -7,9 +7,11 @@ import { useHistory } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import Header from "../../components/Header/Header";
 import { goBack } from "../../routes/coordinator";
+import { GlobalStateContext } from "../../global/GlobalStateContext";
+import { createAddress } from "../../services/user";
 
 const SignUpAdressPage = () => {
-
+    const { states, setters } = useContext(GlobalStateContext);
     const history = useHistory();
     const [form, onChange, clear] = useForm({
         street: "",
@@ -22,6 +24,8 @@ const SignUpAdressPage = () => {
 
     const onSubmitForm = (event) => {
         event.preventDefault();
+        createAddress(form, history, setters.setLoading)
+        clear()
     };
 
     return (
