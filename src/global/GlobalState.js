@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { GlobalStateContext } from './GlobalStateContext';
 import { useEffect } from 'react';
 import { getRestaurants } from '../services/restaurants';
+import { getActiveOrders } from '../services/order';
 
 const GlobalState = (props) => {
 
@@ -10,9 +11,11 @@ const GlobalState = (props) => {
     const [profile, setProfile] = useState({})
     const [restaurantDetail, setRestaurantDetail] = useState({})
     const [loading, setLoading] = useState(false);
+    const [activeOrder, setActiveOrder] = useState([])
 
     useEffect(() => {
         getRestaurants(setRestaurants);
+        getActiveOrders(setActiveOrder)
        }, []);
 
     const setters = {
@@ -20,7 +23,8 @@ const GlobalState = (props) => {
         setProfile,
         setRestaurantDetail,
         setRestaurants,
-        setLoading
+        setLoading,
+        setActiveOrder
     }
 
     const states = {
@@ -28,7 +32,8 @@ const GlobalState = (props) => {
         restaurants,
         profile,
         restaurantDetail,
-        loading
+        loading,
+        activeOrder
     }
 
     return <GlobalStateContext.Provider

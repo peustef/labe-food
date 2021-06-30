@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import RestaurantCard from '../../components/RestaurantCard/RestaurantCard';
 import RestaurantTypeTabs from '../../components/RestaurantTypeTabs/RestaurantTypeTabs';
 import { TextField } from '@material-ui/core';
@@ -11,10 +11,27 @@ import { useHistory } from 'react-router-dom';
 import { goToSearch } from '../../routes/coordinator';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
+import ActiveOrder from '../../components/ActiveOrder/ActiveOrder';
+import { getActiveOrders } from '../../services/order';
 
 const HomePage = () => {
     const history = useHistory()
     const { states } = useContext(GlobalStateContext);
+
+    const actOrder = states.activeOrder
+
+    // console.log(actOrder)
+
+    const order = () =>{
+        if (actOrder !== null){
+            return (
+                <ActiveOrder 
+                name={actOrder.restaurantName}
+                price={actOrder.totalPrice}
+                />
+            )
+        }
+    }
 
     const restaurantsList = states.restaurants.map((restaurant) => {
         return (
@@ -30,6 +47,7 @@ const HomePage = () => {
             />
         );
     });
+
 
     return (
         <div>
@@ -60,6 +78,7 @@ const HomePage = () => {
             <ContainerRestaurantCards>
                 {restaurantsList}
             </ContainerRestaurantCards>
+                {order()}
             <Footer history={history} />
         </div>
 
