@@ -13,7 +13,7 @@ import Header from "../../components/Header/Header";
 import { useHistory } from "react-router-dom";
 
 const SearchPage = () => {
-  const history = useHistory()
+  const history = useHistory();
   const { states, setters } = useContext(GlobalStateContext);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [search, handleSearch] = useInput();
@@ -27,14 +27,19 @@ const SearchPage = () => {
     }
   };
 
+  const clearFilter = () => {
+    setFilteredRestaurants([]);
+  };
+
   useEffect(() => {
     setters.setLoading(true);
-    const delay = setTimeout(() => {
+    clearFilter();
+    let delay = setTimeout(() => {
       filter();
       setters.setLoading(false);
     }, 2000);
 
-    return () => clearTimeout(delay)
+    return () => clearTimeout(delay);
   }, [search]);
 
   const filteredState = filteredRestaurants.map((restaurant) => {
@@ -52,10 +57,7 @@ const SearchPage = () => {
 
   return (
     <div>
-      <Header 
-        buttonLeft={() => goBack(history)}
-        title={'Busca'}
-      />
+      <Header buttonLeft={() => goBack(history)} title={"Busca"} />
       <Box ml={2} mr={2}>
         <TextField
           onChange={handleSearch}
@@ -77,7 +79,9 @@ const SearchPage = () => {
 
       <ContainerRestaurantCards>
         {states.loading === true ? <p>animação carregando por cima</p> : null}
-        {search && filteredState.length === 0 && states.loading === false ? <p>Não encontramos :(</p> : null}
+        {search && filteredState.length === 0 && states.loading === false ? (
+          <p>Não encontramos :(</p>
+        ) : null}
         {search.length === 0 ? <p>Busque por nome de restaurante</p> : null}
         {search ? filteredState : null}
       </ContainerRestaurantCards>
