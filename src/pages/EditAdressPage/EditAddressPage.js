@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import Header from "../../components/Header/Header";
 import { goBack } from "../../routes/coordinator";
+import { updateAddress } from "../../services/user";
 
 const EditAddressPage = () => {
 
@@ -21,7 +22,10 @@ const EditAddressPage = () => {
     });
 
     const onSubmitForm = (event) => {
-        event.preventDefault();
+        event.preventDefault()
+        console.log(form)
+        updateAddress(form, history)
+        clear()
     };
 
     return (
@@ -103,7 +107,7 @@ const EditAddressPage = () => {
                         variant="outlined"
                     />
                 </Grid>
-                <Button variant="contained" color="primary">
+                <Button type='submit' variant="contained" color="primary">
                     Salvar
                 </Button>
             </form>

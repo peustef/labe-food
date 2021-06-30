@@ -105,7 +105,7 @@ const SignUpAdressPage = () => {
                         variant="outlined"
                     />
                 </Grid>
-                <Button variant="contained" color="primary">
+                <Button type='submit' variant="contained" color="primary">
                     Salvar
                 </Button>
             </form>
