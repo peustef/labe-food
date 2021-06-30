@@ -20,6 +20,7 @@ const SignUpPage = () => {
     const onSubmitForm = (event) => {
         event.preventDefault()
         editProfile(form, history, setLoading)
+        clear()
     }
 
 

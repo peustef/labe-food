@@ -1,7 +1,4 @@
-import axios from 'axios'
 import React from 'react'
-import { useState } from 'react'
-import { getActiveOrders } from '../../services/order'
 import { Card, InfoContainer, Icon } from './style'
 
 

@@ -13,7 +13,6 @@ import { goToSearch } from '../../routes/coordinator';
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import ActiveOrder from '../../components/ActiveOrder/ActiveOrder';
-import { getActiveOrders } from '../../services/order';
 import { getRestaurants } from "../../services/restaurants";
 import useProtectedPage from "../../hooks/useProtectedPage";
 
