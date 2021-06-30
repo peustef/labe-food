@@ -17,7 +17,7 @@ const RestaurantTypeTabs = () => {
       <Tabs
         value={value}
         onChange={handleChange}
-        textColor={states.currentCategory === "" ? "neutral" : "primary"}
+        textColor={states.currentCategory === "" ? "secondary" : "primary"}
         variant="scrollable"
         scrollButtons="auto"
         TabIndicatorProps={{

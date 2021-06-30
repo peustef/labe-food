@@ -14,12 +14,12 @@ const RetaurantPage = () => {
     useProtectedPage();
     const params = useParams()
     const history = useHistory()
-    const { setters, states, requests } = useContext(GlobalStateContext);
+    const { setters, states } = useContext(GlobalStateContext);
 
     useLayoutEffect(() => {
         getRestaurantsDetails(setters.setRestaurantDetail, params.id)
         // fazer no home e no search a passagem de id
-    }, [])
+    }, [setters.setRestaurantDetail, params.id])
 
     const restaurant = states.restaurantDetail
     const categories = []

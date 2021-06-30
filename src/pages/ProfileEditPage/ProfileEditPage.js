@@ -22,12 +22,16 @@ const ProfileEditPage = () => {
     const onSubmitForm = (event) => {
         event.preventDefault()
         editProfile(form, history, setLoading)
+        clear()
     }
- 
+
 
     return (
         <Main>
-            <Header buttonLeft={() => goBack(history)}/>
+            <Header
+                buttonLeft={() => goBack(history)}
+                title={'Editar Perfil'}
+            />
             <ContainerForm onSubmit={onSubmitForm}>
                 <Input
                     type='text'
