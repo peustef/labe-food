@@ -6,6 +6,7 @@ import { ContainerAdress, ContainerButton, ContainerDetail, ContainerOrderHistor
 import OrderHistoryCard from '../../components/OrderHistoryCard/OrderHistoryCard';
 import Footer from '../../components/Footer/Footer';
 import { useHistory } from 'react-router-dom';
+import { goToEditAddressPage, goToProfileEditPage } from '../../routes/coordinator';
 
 const ProfilePage = () => {
     const history = useHistory()
@@ -19,7 +20,7 @@ const ProfilePage = () => {
                     <Typography variant={'body1'}>bruna_o@gmail.com</Typography>
                     <Typography variant={'body1'}>333.333.333-33</Typography>
                 </div>
-                <ContainerButton>
+                <ContainerButton onClick={() => goToProfileEditPage(history)}>
                     <EditOutlinedIcon />
                 </ContainerButton>
             </ContainerDetail>
@@ -28,7 +29,7 @@ const ProfilePage = () => {
                     <Typography variant={'body1'} color={'secondary'}>Endereço de Entrega</Typography>
                     <Typography variant={'body1'} >Rua Alessandra Vieira, 42 - Santana</Typography>
                 </div>
-                <Button>
+                <Button onClick={() => goToEditAddressPage(history)} >
                     <EditOutlinedIcon />
                 </Button>
             </ContainerAdress>
@@ -41,7 +42,7 @@ const ProfilePage = () => {
                 <OrderHistoryCard />
                 <OrderHistoryCard />
             </ContainerOrderHistory>
-            <Footer history={history}/>
+            <Footer history={history} />
         </div>
     );
 };
