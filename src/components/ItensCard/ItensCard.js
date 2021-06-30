@@ -25,7 +25,7 @@ const ItensCard = (props) => {
     const classes = useStyles();
     const theme = useTheme();
     const { states, setters } = useContext(GlobalStateContext);
-    const [buttonState, setButtonState] = useState(true)
+    const [buttonState, setButtonState] = useState(props.button)
 
     const addItem = (id, photoUrl, name, description, price) => {
         const product = { id, photoUrl, name, description, price, quantity: 1 }

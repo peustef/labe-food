@@ -15,8 +15,7 @@ const RetaurantPage = () => {
     const { setters, states, requests } = useContext(GlobalStateContext);
 
     useLayoutEffect(() => {
-        getRestaurantsDetails(setters.setRestaurantDetail, params.id)
-        // fazer no home e no search a passagem de id
+        getRestaurantsDetails(setters.setRestaurantDetail, params.id)       
     }, [])
 
     const restaurant = states.restaurantDetail
@@ -41,6 +40,7 @@ const RetaurantPage = () => {
                     photoUrl={prod.photoUrl}
                     price={prod.price}
                     id={prod.id}
+                    button={true}
                 />
             )
         })
