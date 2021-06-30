@@ -10,6 +10,7 @@ import SignUpAdressPage from '../pages/SignUpAdressPage/SignUpAdressPage';
 import RestaurantPage from '../pages/RestaurantPage/RetaurantPage';
 import ProfilePage from '../pages/ProfilePage/ProfilePage';
 import EditAddressPage from '../pages/EditAdressPage/EditAddressPage';
+import ProfileEditPage from '../pages/ProfileEditPage/ProfileEditPage';
 
 const Router = () => {
     return (
@@ -26,6 +27,8 @@ const Router = () => {
                 </Route>
                 <Route exact path={'/perfil/editar/endereco'}>
                     <EditAddressPage />
+                <Route exact path={'/perfil/editar'}>
+                    <ProfileEditPage />
                 </Route>
                 <Route exact path={'/cadastro'}>
                     <SignUpPage />
