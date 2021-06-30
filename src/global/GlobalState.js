@@ -16,11 +16,6 @@ const GlobalState = (props) => {
     const [currentCategory, setCurrentCategory] = useState("")
     const [ordersHistory, setOrdersHistory] = useState([])
 
-    useEffect(() => {
-        getRestaurants(setRestaurants);
-        getActiveOrders(setActiveOrder)
-       }, []);
-
     const setters = {
         setCart,
         setProfile,
