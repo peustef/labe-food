@@ -8,7 +8,7 @@ import useForm from "../../hooks/useForm";
 import Header from "../../components/Header/Header";
 import { goBack } from "../../routes/coordinator";
 
-const SignUpAdressPage = () => {
+const EditAddressPage = () => {
 
     const history = useHistory();
     const [form, onChange, clear] = useForm({
@@ -28,10 +28,8 @@ const SignUpAdressPage = () => {
         <Main>
             <Header
                 buttonLeft={() => goBack(history)}
+                title={'Endereço'}
             />
-            <strong>
-                <p>Meu Endereço</p>
-            </strong>
             <form onSubmit={onSubmitForm}>
                 <Grid item>
                     <TextField
@@ -113,4 +111,4 @@ const SignUpAdressPage = () => {
     );
 };
 
-export default SignUpAdressPage;
+export default EditAddressPage;
