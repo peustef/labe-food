@@ -8,8 +8,10 @@ import Typography from '@material-ui/core/Typography';
 import { ItensCont } from './style';
 import Header from '../../components/Header/Header';
 import { goBack } from '../../routes/coordinator';
+import useProtectedPage from '../../hooks/useProtectedPage';
 
 const RetaurantPage = () => {
+    useProtectedPage();
     const params = useParams()
     const history = useHistory()
     const { setters, states } = useContext(GlobalStateContext);

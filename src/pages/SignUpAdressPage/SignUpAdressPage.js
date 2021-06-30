@@ -7,11 +7,14 @@ import { useHistory } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import Header from "../../components/Header/Header";
 import { goBack } from "../../routes/coordinator";
+import useProtectedPage from "../../hooks/useProtectedPage";
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { createAddress } from "../../services/user";
 
 const SignUpAdressPage = () => {
+  useProtectedPage();
     const { states, setters } = useContext(GlobalStateContext);
+
     const history = useHistory();
     const [form, onChange, clear] = useForm({
         street: "",

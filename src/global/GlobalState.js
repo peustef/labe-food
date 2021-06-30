@@ -14,12 +14,7 @@ const GlobalState = (props) => {
     const [loading, setLoading] = useState(false);
     const [activeOrder, setActiveOrder] = useState([])
     const [currentCategory, setCurrentCategory] = useState("")
-
-    useEffect(() => {
-        getRestaurants(setRestaurants);
-        getActiveOrders(setActiveOrder)
-       }, []);
-  
+    const [ordersHistory, setOrdersHistory] = useState([])
 
     const setters = {
         setCart,
@@ -27,6 +22,8 @@ const GlobalState = (props) => {
         setRestaurantDetail,
         setRestaurants,
         setLoading,
+        setCurrentCategory,
+        setOrdersHistory
         setActiveOrder,
         setCurrentCategory
     }
@@ -37,6 +34,8 @@ const GlobalState = (props) => {
         profile,
         restaurantDetail,
         loading,
+        currentCategory,
+        ordersHistory
         activeOrder,
         currentCategory
     }

@@ -6,9 +6,11 @@ import { editProfile } from '../../services/profile';
 import { CircularProgress } from '@material-ui/core'
 import Header from '../../components/Header/Header';
 import { goBack } from '../../routes/coordinator';
+import useProtectedPage from '../../hooks/useProtectedPage';
 
 
-const SignUpPage = () => {
+const ProfileEditPage = () => {
+    useProtectedPage();
     const history = useHistory()
     const [loading, setLoading] = useState(false)
     const [form, onChange, clear] = useForm({
@@ -72,4 +74,4 @@ const SignUpPage = () => {
     );
 };
 
-export default SignUpPage;
+export default ProfileEditPage;

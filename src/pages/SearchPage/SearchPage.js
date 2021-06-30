@@ -11,8 +11,10 @@ import { useState } from "react";
 import { goBack } from "../../routes/coordinator";
 import Header from "../../components/Header/Header";
 import { useHistory } from "react-router-dom";
+import useProtectedPage from "../../hooks/useProtectedPage";
 
 const SearchPage = () => {
+  useProtectedPage();
   const history = useHistory();
   const { states, setters } = useContext(GlobalStateContext);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
