@@ -7,9 +7,10 @@ import { useHistory } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import Header from "../../components/Header/Header";
 import { goBack } from "../../routes/coordinator";
+import useProtectedPage from "../../hooks/useProtectedPage";
 
 const SignUpAdressPage = () => {
-
+    useProtectedPage();
     const history = useHistory();
     const [form, onChange, clear] = useForm({
         street: "",
