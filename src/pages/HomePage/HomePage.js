@@ -64,20 +64,6 @@ const HomePage = () => {
     }
   };
 
-  const restaurantsList = states.restaurants.map((restaurant) => {
-    return (
-      <RestaurantCard
-        key={restaurant.id}
-        name={restaurant.name}
-        title={restaurant.title}
-        deliveryTime={restaurant.deliveryTime}
-        shipping={restaurant.shipping}
-        logoUrl={restaurant.logoUrl}
-        history={history}
-        id={restaurant.id}
-      />
-    );
-  });
 
   const filteredRestaurantsList = filteredCategoryRestaurants.map((restaurant) => {
     return (
