@@ -1,20 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Button from "@material-ui/core/Button";
 import { Main, Grid } from "./style";
 import TextField from "@material-ui/core/TextField";
 import { useHistory } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import Header from "../../components/Header/Header";
-import { goBack } from "../../routes/coordinator";
+import { goBack, goToProfile } from "../../routes/coordinator";
 import { getFullAddress, updateAddress } from "../../services/user";
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { useEffect } from "react";
+import { CircularProgress } from "@material-ui/core";
 
 const EditAddressPage = () => {
 
     const history = useHistory();
     const { states, setters } = useContext(GlobalStateContext);
     const address = states.address
+    const [loading, setLoading] = useState(false)
     const [form, onChange, clear] = useForm({
         street: address.street,
         number: address.number,
@@ -26,17 +28,17 @@ const EditAddressPage = () => {
 
     useEffect(() => {
         getFullAddress(setters.setAddress)
-      }, []);
+    }, []);
 
     const onSubmitForm = (event) => {
         event.preventDefault()
-        updateAddress(form, history)
+        updateAddress(form, history, setLoading, clear)
     };
 
     return (
         <Main>
             <Header
-                buttonLeft={() => goBack(history)}
+                buttonLeft={() => goToProfile(history)}
                 title={'Endereço'}
             />
             <form onSubmit={onSubmitForm}>
@@ -113,7 +115,7 @@ const EditAddressPage = () => {
                     />
                 </Grid>
                 <Button type='submit' variant="contained" color="primary">
-                    Salvar
+                    {loading ? <CircularProgress color={'inherit'} size={24} /> : 'Salvar'}
                 </Button>
             </form>
         </Main>
