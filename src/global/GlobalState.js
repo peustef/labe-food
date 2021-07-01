@@ -28,7 +28,7 @@ const GlobalState = (props) => {
         setRestaurants,
         setLoading,
         setCurrentCategory,
-        setOrdersHistory
+        setOrdersHistory,
         setActiveOrder,
         setCurrentCategory
     }
@@ -40,7 +40,7 @@ const GlobalState = (props) => {
         restaurantDetail,
         loading,
         currentCategory,
-        ordersHistory
+        ordersHistory,
         activeOrder,
         currentCategory
     }

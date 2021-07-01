@@ -12,6 +12,7 @@ import { goBack } from "../../routes/coordinator";
 import Header from "../../components/Header/Header";
 import { useHistory } from "react-router-dom";
 import useProtectedPage from "../../hooks/useProtectedPage";
+import { Loading } from 'react-loading-dot'
 
 const SearchPage = () => {
   useProtectedPage();
@@ -86,7 +87,7 @@ const SearchPage = () => {
       </Box>
 
       <ContainerRestaurantCards>
-        {states.loading === true ? <p>animação carregando por cima</p> : null}
+        {states.loading === true ? <Loading /> : null}
         {search && filteredState.length === 0 && states.loading === false ? (
           <p>Não encontramos :(</p>
         ) : null}
