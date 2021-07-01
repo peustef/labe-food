@@ -35,7 +35,7 @@ const SignUpAdressPage = () => {
 
   return (
     <Main>
-      <Header buttonLeft={() => goBack(history)} />
+      <Header />
       <strong>
         <p>Meu Endereço</p>
       </strong>
