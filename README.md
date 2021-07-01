@@ -15,7 +15,8 @@ Nome dos integrantes:
 
 Link do Surge: 
 
-O que funciona:
+O que funciona: 
+-
 - Tarefas principais realizadas
 
 - Página login:
