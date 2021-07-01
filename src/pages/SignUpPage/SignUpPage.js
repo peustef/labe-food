@@ -7,7 +7,7 @@ import { signUp } from '../../services/user';
 import { InputLabel, IconButton, InputAdornment, OutlinedInput, CircularProgress } from '@material-ui/core'
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import Header from '../../components/Header/Header';
-import { goBack } from '../../routes/coordinator';
+import { goBack, goToLogin } from '../../routes/coordinator';
 import useUnprotectedPage from '../../hooks/useUnprotectedPage';
 
 
@@ -60,7 +60,7 @@ const SignUpPage = () => {
 
     return (
         <Main>
-            <Header buttonLeft={() => goBack(history)}/>
+            <Header buttonLeft={() => goToLogin(history)}/>
             <img src={logo} />
             <strong><p>Cadastrar</p></strong>
             <ContainerForm onSubmit={onSubmitForm}>

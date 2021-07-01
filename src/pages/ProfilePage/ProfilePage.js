@@ -20,6 +20,7 @@ import useProtectedPage from "../../hooks/useProtectedPage";
 import { getOrdersHistory } from "../../services/order";
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { getProfile } from "../../services/profile";
+import { getFullAddress } from "../../services/user";
 
 const ProfilePage = () => {
   useProtectedPage();

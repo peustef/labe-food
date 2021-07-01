@@ -6,13 +6,13 @@ import TextField from "@material-ui/core/TextField";
 import { useHistory } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import Header from "../../components/Header/Header";
-import { goBack } from "../../routes/coordinator";
+import { goBack, goToSignUp } from "../../routes/coordinator";
 import useProtectedPage from "../../hooks/useProtectedPage";
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { createAddress } from "../../services/user";
 
 const SignUpAdressPage = () => {
-//   useProtectedPage();
+  useProtectedPage();
     const { states, setters } = useContext(GlobalStateContext);
 
     const history = useHistory();
@@ -34,7 +34,7 @@ const SignUpAdressPage = () => {
     return (
         <Main>
             <Header
-                buttonLeft={() => goBack(history)}
+                buttonLeft={() => goToSignUp(history)}
             />
             <strong>
                 <p>Meu Endereço</p>

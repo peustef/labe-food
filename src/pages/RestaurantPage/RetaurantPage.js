@@ -7,7 +7,7 @@ import ItensCard from '../../components/ItensCard/ItensCard';
 import Typography from '@material-ui/core/Typography';
 import { ItensCont, MainCont } from './style';
 import Header from '../../components/Header/Header';
-import { goBack, goToChart } from '../../routes/coordinator';
+import { goBack, goToChart, goToHome } from '../../routes/coordinator';
 import useProtectedPage from '../../hooks/useProtectedPage';
 import Button from '@material-ui/core/Button';
 
@@ -66,7 +66,7 @@ const RetaurantPage = () => {
     return (
         <MainCont>
             <Header
-                buttonLeft={states.cart.length ? () => verifyCart() : () => goBack(history)}
+                buttonLeft={states.cart.length ? () => verifyCart() : () => goToHome(history)}
                 title={'Restaurante'}
             />
             <RestaurantDetailsCard

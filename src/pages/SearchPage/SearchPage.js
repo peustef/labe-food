@@ -8,7 +8,7 @@ import { Box } from "@material-ui/core";
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import useInput from "../../hooks/useInput";
 import { useState } from "react";
-import { goBack } from "../../routes/coordinator";
+import { goBack, goToHome } from "../../routes/coordinator";
 import Header from "../../components/Header/Header";
 import { useHistory } from "react-router-dom";
 import useProtectedPage from "../../hooks/useProtectedPage";
@@ -63,7 +63,7 @@ const SearchPage = () => {
   return (
     <div>
       <Header
-        buttonLeft={() => goBack(history)}
+        buttonLeft={() => goToHome(history)}
         title={'Busca'}
       />
       <Box ml={2} mr={2}>
