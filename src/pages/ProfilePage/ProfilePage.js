@@ -20,51 +20,56 @@ import useProtectedPage from "../../hooks/useProtectedPage";
 import { getOrdersHistory } from "../../services/order";
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { getProfile } from "../../services/profile";
+import { Loading } from "react-loading-dot/lib";
 
 const ProfilePage = () => {
   useProtectedPage();
   const history = useHistory();
   const { states, setters } = useContext(GlobalStateContext);
-  const profile = states.profile
+  const profile = states.profile;
 
   useEffect(() => {
-    getOrdersHistory(setters.setOrdersHistory)
-    getProfile(setters.setProfile)
+    getOrdersHistory(setters.setOrdersHistory, setters.setLoading);
+    getProfile(setters.setProfile, setters.setLoading);
   }, []);
 
   return (
     <div>
       <Header title={"Meu Perfil"} />
-      <ContainerDetail>
+      {states.loading ? (
+        <Loading />
+      ) : (
         <div>
-          <Typography variant={"body1"}>{profile.name}</Typography>
-          <Typography variant={"body1"}>{profile.email}</Typography>
-          <Typography variant={"body1"}>{profile.cpf}</Typography>
+          <ContainerDetail>
+            <div>
+              <Typography variant={"body1"}>{profile.name}</Typography>
+              <Typography variant={"body1"}>{profile.email}</Typography>
+              <Typography variant={"body1"}>{profile.cpf}</Typography>
+            </div>
+            <ContainerButton onClick={() => goToProfileEditPage(history)}>
+              <EditOutlinedIcon />
+            </ContainerButton>
+          </ContainerDetail>
+          <ContainerAdress>
+            <div>
+              <Typography variant={"body1"} color={"secondary"}>
+                Endereço de Entrega
+              </Typography>
+              <Typography variant={"body1"}>{profile.address}</Typography>
+            </div>
+            <Button onClick={() => goToEditAddressPage(history)}>
+              <EditOutlinedIcon />
+            </Button>
+          </ContainerAdress>
+          <ContainerOrderHistory>
+            <ContainerTitleOrder>
+              <Typography variant={"body1"}>Histórico de Pedidos</Typography>
+            </ContainerTitleOrder>
+            <OrderHistoryCard />
+          </ContainerOrderHistory>
         </div>
-        <ContainerButton onClick={() => goToProfileEditPage(history)}>
-          <EditOutlinedIcon />
-        </ContainerButton>
-      </ContainerDetail>
-      <ContainerAdress>
-        <div>
-          <Typography variant={"body1"} color={"secondary"}>
-            Endereço de Entrega
-          </Typography>
-          <Typography variant={"body1"}>
-            {profile.address}
-          </Typography>
-        </div>
-        <Button onClick={() => goToEditAddressPage(history)}>
-          <EditOutlinedIcon />
-        </Button>
-      </ContainerAdress>
-      <ContainerOrderHistory>
-        <ContainerTitleOrder>
-          <Typography variant={"body1"}>Histórico de Pedidos</Typography>
-        </ContainerTitleOrder>
-        <OrderHistoryCard />
-      </ContainerOrderHistory>
-      <Footer history={history} colorProfile={'primary'}/>
+      )}
+      <Footer history={history} colorProfile={"primary"} />
     </div>
   );
 };

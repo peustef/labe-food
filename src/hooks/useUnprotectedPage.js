@@ -9,7 +9,7 @@ function useUnprotectedPage() {
         const token = localStorage.getItem('token')
         // Caso token for diferente de true, redireciona para a tela de login
         if(token) {
-            history.push('/')
+            history.push('/home')
         }
     })
 }

@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import Button from "@material-ui/core/Button";
 import { Main, Grid } from "./style";
-import logo from "../../assets/logo.png";
 import TextField from "@material-ui/core/TextField";
+import { CircularProgress } from '@material-ui/core'
 import { useHistory } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import Header from "../../components/Header/Header";
@@ -113,7 +113,7 @@ const SignUpAdressPage = () => {
                     />
                 </Grid>
                 <Button type='submit' variant="contained" color="primary">
-                    Salvar
+                {states.loading ? <CircularProgress color={'inherit'} size={24} /> : 'Salvar'}
                 </Button>
             </form>
         </Main>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Main, ContainerForm, Input, InputPassword, SendButton } from './style'
 import logo from '../../assets/logo.png'
 import { useHistory } from 'react-router-dom';
@@ -9,12 +9,13 @@ import { Visibility, VisibilityOff } from '@material-ui/icons';
 import Header from '../../components/Header/Header';
 import { goBack } from '../../routes/coordinator';
 import useUnprotectedPage from '../../hooks/useUnprotectedPage';
+import { GlobalStateContext } from '../../global/GlobalStateContext';
 
 
 const SignUpPage = () => {
     useUnprotectedPage();
+    const { states, setters } = useContext(GlobalStateContext);
     const history = useHistory()
-    const [loading, setLoading] = useState(false)
     const [confirm, setConfirm] = useState('')
     const [form, onChange, clear, setForm] = useForm({
         name: "",
@@ -47,7 +48,7 @@ const SignUpPage = () => {
         if(form.password !== confirm){
             alert('Senhas não são iguais')
         } else {
-            signUp(form, history, setLoading)
+            signUp(form, history, setters.setLoading)
             clear()
         }
        
@@ -154,7 +155,7 @@ const SignUpPage = () => {
                     type='submit'
                     variant="contained"
                     color="primary">
-                    {loading ? <CircularProgress color={'inherit'} size={24} /> : 'Criar'}
+                    {states.loading ? <CircularProgress color={'inherit'} size={24} /> : 'Criar'}
                 </SendButton>
             </ContainerForm>
         </Main>
