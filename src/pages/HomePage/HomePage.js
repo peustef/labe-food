@@ -24,22 +24,20 @@ const HomePage = () => {
     useState([]);
   const { states, setters } = useContext(GlobalStateContext);
 
-    const actOrder = states.activeOrder
+  const actOrder = states.activeOrder
 
-    console.log(actOrder)
-
-    const order = () => {
-        if (actOrder !== null){
-            return (
-                <ActiveOrder 
-                name={actOrder.restaurantName}
-                price={actOrder.totalPrice}
-                />
-            )
-        }
+  const order = () => {
+    if (actOrder.length !== 0) {
+      return (
+        <ActiveOrder
+          name={actOrder.restaurantName}
+          price={actOrder.totalPrice}
+        />
+      )
     }
+  }
 
- 
+
 
   const restaurantsList = states.restaurants.map((restaurant) => {
     return (
