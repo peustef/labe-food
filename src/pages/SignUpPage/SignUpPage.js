@@ -15,10 +15,12 @@ import { Visibility, VisibilityOff } from "@material-ui/icons";
 import Header from "../../components/Header/Header";
 import { goBack } from "../../routes/coordinator";
 import useUnprotectedPage from "../../hooks/useUnprotectedPage";
+import useUnprotectedPageSignUpPage from "../../hooks/useUnprotectedSignUpPage";
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 
 const SignUpPage = () => {
   useUnprotectedPage();
+  useUnprotectedPageSignUpPage()
   const { states, setters } = useContext(GlobalStateContext);
   const history = useHistory();
   const [confirm, setConfirm] = useState("");

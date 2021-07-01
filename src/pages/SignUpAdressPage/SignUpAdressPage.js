@@ -7,12 +7,14 @@ import { useHistory } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import Header from "../../components/Header/Header";
 import { goBack } from "../../routes/coordinator";
-import useProtectedPage from "../../hooks/useProtectedPage";
+import useUnprotectedPageSignUpPage from "../../hooks/useUnprotectedSignUpPage";
+import useUnprotectedPage from "../../hooks/useUnprotectedPage";
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { createAddress } from "../../services/user";
 
 const SignUpAdressPage = () => {
-  //   useProtectedPage();
+  useUnprotectedPage();
+  useUnprotectedPageSignUpPage()
   const { states, setters } = useContext(GlobalStateContext);
 
   const history = useHistory();
@@ -33,7 +35,7 @@ const SignUpAdressPage = () => {
 
   return (
     <Main>
-      <Header buttonLeft={() => goBack(history)} />
+      <Header />
       <strong>
         <p>Meu Endereço</p>
       </strong>
@@ -68,7 +70,6 @@ const SignUpAdressPage = () => {
             name={"complement"}
             value={form.complement}
             onChange={onChange}
-            required
             label="Complemento"
             placeholder="Apto./Bloco"
             variant="outlined"
