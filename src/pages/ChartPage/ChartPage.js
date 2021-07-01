@@ -1,5 +1,5 @@
 import { Typography } from '@material-ui/core';
-import React, { useContext } from 'react';
+import React, { useContext,useEffect } from 'react';
 import { ContainerAdress, ContainerFood, ContainerInfoCart, ContainerCart } from './style';
 import Payment from '../../components/Payment/Payment'
 import { useHistory } from 'react-router-dom';
@@ -8,6 +8,7 @@ import Header from '../../components/Header/Header';
 import ItensCard from '../../components/ItensCard/ItensCard';
 import useProtectedPage from '../../hooks/useProtectedPage';
 import { GlobalStateContext } from "../../global/GlobalStateContext";
+import { getProfile } from "../../services/profile";
 
 const ChartPage = () => {
     const { states, setters } = useContext(GlobalStateContext);
@@ -31,16 +32,17 @@ const ChartPage = () => {
         )
     })
 
+    useEffect(() => {       
+        getProfile(setters.setProfile)
+      }, [setters.setProfile]);
+    
     return (
         <div>
             <Header title={'Meu carrinho'} />
             <ContainerCart>
                 <ContainerAdress>
                     <Typography variant={'body1'} color={'secondary'}>Endereço de Entrega</Typography>
-                    <Typography variant={'body1'} >Rua Alessandra Vieira, 42</Typography>
-                    
-                    {/* Pegar endereço do estado global, depois de a requisição ser feita  */}
-
+                    <Typography variant={'body1'} >{states.profile.address}</Typography>
                 </ContainerAdress>
 
                 {states.cart.length ?
