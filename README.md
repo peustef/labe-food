@@ -15,9 +15,8 @@ Nome dos integrantes:
 
 Link do Surge: 
 
-# O que funciona:
-
-Tarefas principais realizadas
+O que funciona:
+- Tarefas principais realizadas
 
 - Página login:
   - 
@@ -49,5 +48,5 @@ Tarefas principais realizadas
 
 
 O que não funciona: 
-
+-
 
