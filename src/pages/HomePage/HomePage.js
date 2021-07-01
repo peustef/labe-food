@@ -27,7 +27,7 @@ const HomePage = () => {
   const actOrder = states.activeOrder
 
   const order = () => {
-    if (actOrder.length !== 0) {
+    if (actOrder && actOrder.length !== 0) {
       return (
         <ActiveOrder
           name={actOrder.restaurantName}
