@@ -15,6 +15,7 @@ import Header from '../../components/Header/Header';
 import ActiveOrder from '../../components/ActiveOrder/ActiveOrder';
 import { getRestaurants } from "../../services/restaurants";
 import useProtectedPage from "../../hooks/useProtectedPage";
+import { getActiveOrders } from '../../services/order';
 
 const HomePage = () => {
   useProtectedPage();
@@ -25,9 +26,9 @@ const HomePage = () => {
 
     const actOrder = states.activeOrder
 
-    // console.log(actOrder)
+    console.log(actOrder)
 
-    const order = () =>{
+    const order = () => {
         if (actOrder !== null){
             return (
                 <ActiveOrder 
@@ -81,6 +82,7 @@ const HomePage = () => {
 
   useEffect(() => {
     getRestaurants(setters.setRestaurants);
+    getActiveOrders(setters.setActiveOrder);
     filter();
   }, [states.currentCategory]);
 
