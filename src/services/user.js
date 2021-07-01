@@ -35,7 +35,7 @@ export const signUp = (body, history, setLoading) => {
     axios
         .post(`${BASE_URL}/signup`, body)
         .then((res) => {
-            localStorage.setItem("token", res.data.token);
+            localStorage.setItem("tokenSignUp", res.data.token);
             alert("Conta criada com sucesso!")
             goToSignUpAdress(history);
             setLoading(false);
@@ -48,10 +48,17 @@ export const signUp = (body, history, setLoading) => {
 
 export const createAddress = (body, history, setLoading) => {
     setLoading(true);
+    const token = localStorage.getItem('tokenSignUp')
+
+    const header = {
+        headers: {
+            auth: token
+        }
+    }
     axios
-        .put(`${BASE_URL}/address`, body, getHeader())
+        .put(`${BASE_URL}/address`, body, header)
         .then((res) => {
-            localStorage.removeItem("token")
+            localStorage.removeItem("tokenSignUp")
             localStorage.setItem("token", res.data.token);
             alert("Endereço salvo!")
             goToHome(history);
