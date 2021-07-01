@@ -74,7 +74,8 @@ const ProfileEditPage = () => {
                 <SendButton
                     type='submit'
                     variant="contained"
-                    color="primary">
+                    color="primary"
+                    fullWidth>
                     {loading ? <CircularProgress color={'inherit'} size={24} /> : 'Salvar'}
                 </SendButton>
             </ContainerForm>
