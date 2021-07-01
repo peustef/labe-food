@@ -12,7 +12,7 @@ import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { createAddress } from "../../services/user";
 
 const SignUpAdressPage = () => {
-  useProtectedPage();
+//   useProtectedPage();
     const { states, setters } = useContext(GlobalStateContext);
 
     const history = useHistory();
@@ -112,7 +112,7 @@ const SignUpAdressPage = () => {
                         variant="outlined"
                     />
                 </Grid>
-                <Button type='submit' variant="contained" color="primary">
+                <Button type='submit' variant="contained" color="primary" fullWidth>
                     Salvar
                 </Button>
             </form>

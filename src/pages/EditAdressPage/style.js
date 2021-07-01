@@ -25,8 +25,7 @@ export const Main = styled.div`
           width:20.5rem;
       }
       button{
-          width:22.5rem;
-          height:3.5rem;
+          width:22.3rem;
       }
   }
 `
