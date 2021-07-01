@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import Logo from '../../assets/logo.png'
 import { ContainerLogin, ContainerForm, InputEmail, InputPassword, ContainerButton } from './style'
 import { InputLabel, IconButton, InputAdornment, OutlinedInput, Button, CircularProgress } from '@material-ui/core'
@@ -9,11 +9,12 @@ import { useHistory } from 'react-router-dom';
 import { login } from '../../services/user';
 import useForm from '../../hooks/useForm';
 import useUnprotectedPage from "../../hooks/useUnprotectedPage"
+import { GlobalStateContext } from '../../global/GlobalStateContext';
 
 const LoginPage = () => {
     useUnprotectedPage();
+    const { states, setters } = useContext(GlobalStateContext);
     const history = useHistory()
-    const [loading, setLoading] = useState(false)
     const [form, onChange, clear, setForm] = useForm({
         email: '',
         password: '',
@@ -30,7 +31,7 @@ const LoginPage = () => {
 
     const submitLogin = (e) => {
         e.preventDefault()
-        login(form, history, setLoading)
+        login(form, history, setters.setLoading)
         clear()
     }
 
@@ -81,7 +82,7 @@ const LoginPage = () => {
                     type={'submit'}
                     variant={'contained'}
                     fullWidth
-                >{loading ? <CircularProgress color={'inherit'} size={24} /> : 'Entrar'}</ContainerButton>
+                >{states.loading ? <CircularProgress color={'inherit'} size={24} /> : 'Entrar'}</ContainerButton>
             </ContainerForm>
             <Button fullWidth onClick={() => goToSignUp(history)}>Não possui cadastro? Clique aqui</Button>
         </ContainerLogin>

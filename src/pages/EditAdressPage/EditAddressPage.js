@@ -1,30 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "@material-ui/core/Button";
 import { Main, Grid } from "./style";
-import logo from "../../assets/logo.png";
 import TextField from "@material-ui/core/TextField";
 import { useHistory } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import Header from "../../components/Header/Header";
 import { goBack } from "../../routes/coordinator";
-import { updateAddress } from "../../services/user";
+import { getFullAddress, updateAddress } from "../../services/user";
+import { GlobalStateContext } from "../../global/GlobalStateContext";
+import { useEffect } from "react";
 
 const EditAddressPage = () => {
 
     const history = useHistory();
+    const { states, setters } = useContext(GlobalStateContext);
+    const address = states.address
     const [form, onChange, clear] = useForm({
-        street: "",
-        number: "",
-        neighbourhood: "",
-        city: "",
-        state: "",
-        complement: "",
+        street: address.street,
+        number: address.number,
+        neighbourhood: address.neighbourhood,
+        city: address.city,
+        state: address.state,
+        complement: address.complement,
     });
+
+    useEffect(() => {
+        getFullAddress(setters.setAddress)
+      }, []);
 
     const onSubmitForm = (event) => {
         event.preventDefault()
         updateAddress(form, history)
-        clear()
     };
 
     return (

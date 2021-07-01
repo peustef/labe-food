@@ -13,11 +13,12 @@ export const getHeader = () => {
     return header
 }
 
-export const editProfile = (body, history, setLoading) => {
+export const editProfile = (body, history, setLoading, clear) => {
     setLoading(true);
     axios
     .put(`${BASE_URL}/profile`, body, getHeader())
     .then((res) => {
+        clear()
         alert("Perfil editado com sucesso")
         goBack(history);
         setLoading(false);
@@ -29,12 +30,15 @@ export const editProfile = (body, history, setLoading) => {
     })
 }
 
-export const getProfile = (setter) => {
+export const getProfile = (setProfile, setLoading) => {
+    setLoading(true)
     axios.get(`${BASE_URL}/profile`, getHeader())
     .then((res) => {
-      setter(res.data.user)
+      setProfile(res.data.user)
+      setLoading(false)
     })
     .catch((err) => {
       console.log(err)
+      setLoading(false)
     })
 }

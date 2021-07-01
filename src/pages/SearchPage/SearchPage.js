@@ -91,7 +91,7 @@ const SearchPage = () => {
         {search && filteredState.length === 0 && states.loading === false ? (
           <p>Não encontramos :(</p>
         ) : null}
-        {search.length === 0 ? <p>Busque por nome de restaurante</p> : null}
+        {search.length === 0 && states.loading === false ? <p>Busque por nome de restaurante</p> : null}
         {search ? filteredState : null}
       </ContainerRestaurantCards>
     </div>

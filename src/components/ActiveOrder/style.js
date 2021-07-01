@@ -9,10 +9,11 @@ export const Card = styled.div`
     padding-left:32px;
     height:7.3rem;
     background-color:#e8222e;
-    position:sticky;
+    position:fixed;
     bottom:60px;
     z-index:111;
     font-family:'Roboto';
+    width: 100%;
 `
 
 export const InfoContainer = styled.div`

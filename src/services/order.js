@@ -20,15 +20,17 @@ export const placeOrder = (body, history, restaurantId) => {
     });
 };
 
-export const getOrdersHistory = (setOrders) => {
+export const getOrdersHistory = (setOrders, setLoading) => {
+  setLoading(true);
   axios
     .get(`${BASE_URL}/orders/history`, header)
     .then((res) => {
       setOrders(res.data.orders);
+      setLoading(false);
     })
     .catch((err) => {
-      console.log(err);
       alert(err);
+      setLoading(false);
     });
 };
 
