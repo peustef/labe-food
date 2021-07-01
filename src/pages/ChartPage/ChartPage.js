@@ -1,5 +1,5 @@
 import { Typography } from '@material-ui/core';
-import React from 'react';
+import React, { useContext,useEffect } from 'react';
 import { ContainerAdress, ContainerFood, ContainerInfoCart, ContainerCart } from './style';
 import Payment from '../../components/Payment/Payment'
 import { useHistory } from 'react-router-dom';
@@ -7,42 +7,64 @@ import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 import ItensCard from '../../components/ItensCard/ItensCard';
 import useProtectedPage from '../../hooks/useProtectedPage';
+import { GlobalStateContext } from "../../global/GlobalStateContext";
+import { getProfile } from "../../services/profile";
 
 const ChartPage = () => {
+    const { states, setters } = useContext(GlobalStateContext);
+
     useProtectedPage();
+  
     const history = useHistory()
+    const restaurant = states.restaurantDetail
+
+    const cartList = states.cart.map((prod) => {
+        return (
+            <ItensCard
+                key={prod.id}
+                name={prod.name}
+                description={prod.description}
+                photoUrl={prod.photoUrl}
+                price={prod.price}
+                id={prod.id}
+                button={false}
+            />
+        )
+    })
+
+    useEffect(() => {       
+        getProfile(setters.setProfile)
+      }, [setters.setProfile]);
+    
     return (
         <div>
             <Header title={'Meu carrinho'} />
             <ContainerCart>
                 <ContainerAdress>
                     <Typography variant={'body1'} color={'secondary'}>Endereço de Entrega</Typography>
-                    <Typography variant={'body1'} >Rua Alessandra Vieira, 42</Typography>
+                    <Typography variant={'body1'} >{states.profile.address}</Typography>
                 </ContainerAdress>
-                <ContainerInfoCart>
-                    <Typography variant={'body1'} color={'primary'} >Bullguer Vila Madalena</Typography>
-                    <Typography variant={'body1'} color={'secondary'} >R. Fradique Coutinho, 1136 - Vila Madalena</Typography>
-                    <Typography variant={'body1'} color={'secondary'} >30 - 45 min</Typography>
-                </ContainerInfoCart>
-                <ContainerFood>
-                    {/* Fazer condicional para caso o carrinho esteja vazio */}
-                    <Typography variant={'body1'}  >Carrinho Vazio</Typography>
-                    <ItensCard
-                        name={'Stencil'}
-                        description={'O melhor hamburguer do mundo'}
-                        price={'52,00'}
-                        photoUrl={'https://www.colombo.com.br/blog/wp-content/uploads/2021/05/hamburguer-artesanal.jpg'}
-                    />
-                    <ItensCard
-                        name={'Stencil'}
-                        description={'O melhor hamburguer do mundo'}
-                        price={'52,00'}
-                        photoUrl={'https://www.sabornamesa.com.br/media/k2/items/cache/b9ad772005653afce4d4bd46c2efe842_L.jpg'}
-                    />
-                </ContainerFood>
-                <Payment />
+
+                {states.cart.length ?
+                    <div>
+                        <ContainerInfoCart>
+                            <Typography variant={'body1'} color={'primary'} >{restaurant.name}</Typography>
+                            <Typography variant={'body1'} color={'secondary'} >{restaurant.address}</Typography>
+                            <Typography variant={'body1'} color={'secondary'} >{restaurant.deliveryTime} min</Typography>
+                        </ContainerInfoCart>
+                        <ContainerFood>
+                            {cartList}
+                        </ContainerFood>
+                    </div>
+                    :
+                    <ContainerFood>
+                        <Typography variant={'body1'}  >Carrinho Vazio</Typography>
+                    </ContainerFood>
+                }
+
+                <Payment shipping={restaurant.shipping} />
             </ContainerCart>
-            <Footer history={history} />
+            <Footer history={history} colorShopping={'primary'}/>
         </div>
     );
 };

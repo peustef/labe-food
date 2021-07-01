@@ -28,3 +28,13 @@ export const editProfile = (body, history, setLoading) => {
         setLoading(false);
     })
 }
+
+export const getProfile = (setter) => {
+    axios.get(`${BASE_URL}/profile`, getHeader())
+    .then((res) => {
+      setter(res.data.user)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}

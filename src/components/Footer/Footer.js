@@ -6,18 +6,18 @@ import { goToChart, goToHome, goToProfile } from '../../routes/coordinator';
 import { StickFooter, StyledIconButton } from './style';
 
 
-const Footer = ({ history }) => {
+const Footer = ({ history, colorHome, colorShopping, colorProfile }) => {
 
     return (
         <div>
             <StickFooter>
-                <StyledIconButton color="secondary" onClick={() => goToHome(history)}>
+                <StyledIconButton color={colorHome ? colorHome : 'secondary'} onClick={() => goToHome(history)}>
                     <HomeOutlinedIcon fontSize="large" />
                 </StyledIconButton>
-                <StyledIconButton color="secondary" onClick={() => goToChart(history)}>
+                <StyledIconButton color={colorShopping ? colorShopping : 'secondary'} onClick={() => goToChart(history)}>
                     <ShoppingCartOutlinedIcon fontSize="large" />
                 </StyledIconButton>
-                <StyledIconButton color="secondary" onClick={() => goToProfile(history)}>
+                <StyledIconButton color={colorProfile ? colorProfile : 'secondary'} onClick={() => goToProfile(history)}>
                     <PersonOutlineOutlinedIcon fontSize="large" />
                 </StyledIconButton>
             </StickFooter>
