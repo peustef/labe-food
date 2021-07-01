@@ -31,6 +31,7 @@ const ProfilePage = () => {
   useEffect(() => {
     getOrdersHistory(setters.setOrdersHistory, setters.setLoading);
     getProfile(setters.setProfile, setters.setLoading);
+    setters.setCart([])
   }, []);
 
   return (

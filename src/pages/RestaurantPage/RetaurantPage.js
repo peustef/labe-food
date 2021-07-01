@@ -4,8 +4,7 @@ import RestaurantDetailsCard from '../../components/RestaurantDetailsCard/Restau
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { getRestaurantsDetails } from '../../services/restaurants';
 import ItensCard from '../../components/ItensCard/ItensCard';
-import Typography from '@material-ui/core/Typography';
-import { ItensCont, MainCont } from './style';
+import { ItensCont, MainCont, HR, StyledTypo } from './style';
 import Header from '../../components/Header/Header';
 import { goBack, goToChart } from '../../routes/coordinator';
 import useProtectedPage from '../../hooks/useProtectedPage';
@@ -50,7 +49,8 @@ const RetaurantPage = () => {
 
         return (
             <ItensCont key={item}>
-                <Typography variant="body1" component="h2"> {item} </Typography>
+                <StyledTypo variant="body1" component="h2"> {item} </StyledTypo>
+                <HR/>
                 {productsList}
             </ItensCont>
         )

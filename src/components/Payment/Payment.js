@@ -1,5 +1,5 @@
 import { Button, FormControl, FormControlLabel, Radio, RadioGroup, Typography } from '@material-ui/core';
-import React, { useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { ContainerPayment, PaymentInfo, Shipping, SubTotal } from './style';
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { placeOrder } from '../../services/order';
@@ -16,37 +16,51 @@ const Payment = (props) => {
 
     const shippingValue = states.cart.length ? props.shipping : 0
 
-    const itemSum = []
-    states.cart && states.cart.forEach((item) => {
-        itemSum.push(item.price * item.quantity)
-    });
-    const totalValue = itemSum.reduce((a, b) => a + b, shippingValue)
+    const request = () => {
+        const itensRequest = []
+        states.cart && states.cart.forEach((item) => {
+            itensRequest.push({
+                id: item.id,
+                quantity: item.quantity
+            })
+        });
+        const requestBody = {
+            products: itensRequest,
+            paymentMethod: payment
+        }
+        return requestBody
+    }
 
-    const itensRequest = []
-    states.cart && states.cart.forEach((item) => {
-        itensRequest.push({
-            id: item.id,
-            quantity: item.quantity
-        })
-    });
+    const fixPrice = (value) => {
+        const num = value.toFixed(2).replace('.', ',')
+        return num
+    }
 
-    const requestBody = {
-        products: itensRequest,
-        paymentMethod: payment
+    const sum = () => {
+        const itemSum = []
+        states.cart && states.cart.forEach((item) => {
+            itemSum.push(item.price * item.quantity)
+        });
+        setters.setTotalValue(itemSum.reduce((a, b) => a + b, shippingValue))
     }
 
     const verifyPayment = () => {
         alert("Escolha uma forma de pagamento")
     }
 
+    useEffect(() => {
+        sum()
+        request()
+    }, [request]);
+
     return (
         <ContainerPayment>
             <Shipping>
-                <Typography variant={'body1'}  >Frete R${ shippingValue},00</Typography>
+                <Typography variant={'body1'}  >Frete R${shippingValue},00</Typography>
             </Shipping>
             <SubTotal>
                 <Typography variant={'body1'} >SUBTOTAL</Typography>
-                <Typography variant={'body1'} color={'primary'}>R${totalValue},00</Typography>
+                <Typography variant={'body1'} color={'primary'}>R${fixPrice(states.totalValue)}</Typography>
             </SubTotal>
             <PaymentInfo>
                 <Typography variant={'body1'} >Forma de Pagamento</Typography>
@@ -60,7 +74,7 @@ const Payment = (props) => {
             <Button
                 variant={'contained'}
                 color={'primary'}
-                onClick={payment ? () => placeOrder(requestBody, history, states.restaurantDetail.id) : () => verifyPayment()}
+                onClick={payment ? () => placeOrder(request(), history, states.restaurantDetail.id) : () => verifyPayment()}
             >Confirmar</Button>
         </ContainerPayment>
     );

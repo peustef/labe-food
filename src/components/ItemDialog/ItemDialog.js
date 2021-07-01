@@ -5,10 +5,8 @@ import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-import { Select, Container } from './styled';
+import { Select, Container, StyledButton } from './styled';
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import useInput from '../../hooks/useInput';
 
@@ -30,11 +28,6 @@ const DialogTitle = withStyles(styles)((props) => {
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
       <Typography variant="subtitle2" align="center">{children}</Typography>
-      {/* {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-          <CloseIcon />
-        </IconButton>
-      ) : null} */}
     </MuiDialogTitle>
   );
 });
@@ -60,25 +53,32 @@ export default function ItemDialog(props) {
   const selectItem = states.cart.filter((item) => { return item.id === props.id })
   const product = selectItem[0]
 
+  const sum = () => {
+    const sum = props.price * (select ? select : 1) 
+    setters.setTotalValue(states.totalValue + sum)
+  }
+
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
-    product.quantity = select  
+    product.quantity = select
+    sum()
   };
 
   return (
     <Container>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-         { product && product.quantity ? product.quantity : 1}
-      </Button>
+      <StyledButton onClick={handleClickOpen}>
+        {product && product.quantity ? product.quantity : 1}
+      </StyledButton>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           Selecione a quantidade desejada
         </DialogTitle>
         <DialogContent dividers>
-          <Select onChange={setSelect}  >              
+          <Select onChange={setSelect}  >
+            <option value={0}> 0 </option>
             <option value={1}> 1 </option>
             <option value={2}> 2 </option>
             <option value={3}> 3 </option>

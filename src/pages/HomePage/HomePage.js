@@ -84,6 +84,7 @@ const HomePage = () => {
     getRestaurants(setters.setRestaurants, setters.setLoading);
     getActiveOrders(setters.setActiveOrder);
     filter();
+    setters.setCart([])
   }, [states.currentCategory]);
 
   return (
