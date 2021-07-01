@@ -1,28 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Main, ContainerForm, Input, SendButton } from './style'
 import { useHistory } from 'react-router-dom';
 import useForm from '../../hooks/useForm'
-import { editProfile } from '../../services/profile';
+import { editProfile, getProfile } from '../../services/profile';
 import { CircularProgress } from '@material-ui/core'
 import Header from '../../components/Header/Header';
 import { goBack } from '../../routes/coordinator';
 import useProtectedPage from '../../hooks/useProtectedPage';
+import GlobalState from '../../global/GlobalState';
+import { GlobalStateContext } from '../../global/GlobalStateContext';
+import { useContext } from 'react';
 
 
 const ProfileEditPage = () => {
     useProtectedPage();
     const history = useHistory()
     const [loading, setLoading] = useState(false)
+    const { states, setters } = useContext(GlobalStateContext);
+    const profile = states.profile
     const [form, onChange, clear] = useForm({
-        name: "",
-        email: "",
-        cpf: "",
+        name: profile.name,
+        email: profile.email,
+        cpf: profile.cpf,
     })
+
+    useEffect(() => {
+        getProfile(setters.setProfile)
+      }, []);
 
     const onSubmitForm = (event) => {
         event.preventDefault()
-        editProfile(form, history, setLoading)
-        clear()
+        editProfile(form, history, setLoading, clear)
     }
 
 

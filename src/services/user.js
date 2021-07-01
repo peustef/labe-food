@@ -76,6 +76,16 @@ export const updateAddress = (body, history) => {
         })
 }
 
+export const getFullAddress = (setter) => {
+    axios.get(`${BASE_URL}/profile/address`, getHeader())
+        .then((res) => {
+            setter(res.data.address)
+        })
+        .catch((err) => {
+            alert('Erro ao alterar Endereço')
+        })
+}
+
 
 export const logout = () => {
     localStorage.removeItem("token");
