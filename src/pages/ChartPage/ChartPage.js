@@ -34,7 +34,7 @@ const ChartPage = () => {
 
     useEffect(() => {       
         getProfile(setters.setProfile)
-      }, [setters.setProfile]);
+      }, [setters.setProfile, states.cart]);
     
     return (
         <div>

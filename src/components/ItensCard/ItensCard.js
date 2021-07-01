@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -27,10 +27,18 @@ const ItensCard = (props) => {
     const { states, setters } = useContext(GlobalStateContext);
     const [buttonState, setButtonState] = useState(props.button)
 
+    const verifyCart = () => {
+        const productInCart = states.cart.find(item => item.id === props.id)
+        if (productInCart) {
+            setButtonState(false)
+        }
+    }
+
     const addItem = (id, photoUrl, name, description, price) => {
         const product = { id, photoUrl, name, description, price, quantity: 1 }
         setters.setCart([...states.cart, product])
         setButtonState(!buttonState)
+        setters.setTotalValue(states.totalValue + price)
     }
 
     const removeItem = (id) => {
@@ -38,6 +46,15 @@ const ItensCard = (props) => {
         setters.setCart(filteredCart)
         setButtonState(!buttonState)
     }
+
+    const fixPrice = () => {
+        const num = props.price.toFixed(2).replace('.', ',')
+        return num
+    }
+
+    useEffect(() => {
+        verifyCart()
+    }, []);
 
     return (
         <StyledCard className={classes.root} >
@@ -47,7 +64,7 @@ const ItensCard = (props) => {
                 title=""
             />
             <RelaDiv>
-                { buttonState ? "" : <ItemDialog id={props.id}/> }
+                {buttonState ? "" : <ItemDialog id={props.id} price={props.price} quantity={props.quantity} />}
                 <CardContent className={classes.content}>
 
                     <Typography color="primary" variant="body1" component="h2">
@@ -57,8 +74,8 @@ const ItensCard = (props) => {
                         {props.description}
                     </Typography>
 
-                    <Typography variant="body2" color="secondary" component="p">
-                        R$ {props.price}
+                    <Typography variant="h6" component="p">
+                        R$ {fixPrice()}
                     </Typography>
                 </CardContent>
 
@@ -67,7 +84,6 @@ const ItensCard = (props) => {
                     :
                     <RemoveButton onClick={() => removeItem(props.id)}>Remover</RemoveButton>
                 }
-
             </RelaDiv>
         </StyledCard>
     )

@@ -1,6 +1,4 @@
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import styled from 'styled-components';
 
 export const StyledCard = styled(Card)`
@@ -17,12 +15,14 @@ width: 5.625rem;
 height: 1.938rem;
 margin: 0.438rem 0 0 0.5rem;
 padding: 0.5rem 1.281rem 0.563rem 1.344rem;
-border-radius: 8px;
-border: solid 1px var(--black);
+border-radius: 8px 0;
+border: solid 1px black;
 position: absolute; 
 bottom: 0;
 right:0; 
 z-index: 2;
+color: black;
+background-color:white;
 `
 export const RelaDiv = styled.div`
 position: relative;
@@ -34,10 +34,13 @@ width: 5.625rem;
 height: 1.938rem;
 margin: 0.438rem 0 0 0.5rem;
 padding: 0.5rem 1.281rem 0.563rem 1.344rem;
-border-radius: 8px;
+border-radius: 8px 0;
 border: solid 1px #e02020;
 position: absolute; 
 bottom: 0;
 right:0; 
 z-index: 2;
+color: #e02020;
+background-color:white;
 `
+

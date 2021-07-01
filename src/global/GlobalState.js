@@ -12,6 +12,7 @@ const GlobalState = (props) => {
     const [activeOrder, setActiveOrder] = useState([])
     const [currentCategory, setCurrentCategory] = useState("")
     const [ordersHistory, setOrdersHistory] = useState([])
+    const [totalValue, setTotalValue] = useState(0)
 
     const setters = {
         setCart,
@@ -22,7 +23,8 @@ const GlobalState = (props) => {
         setCurrentCategory,
         setOrdersHistory,
         setActiveOrder,
-        setCurrentCategory
+        setCurrentCategory,
+        setTotalValue
     }
 
     const states = {
@@ -34,7 +36,8 @@ const GlobalState = (props) => {
         currentCategory,
         ordersHistory,
         activeOrder,
-        currentCategory
+        currentCategory,
+        totalValue
     }
 
     return <GlobalStateContext.Provider

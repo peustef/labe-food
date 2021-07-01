@@ -30,6 +30,7 @@ const ProfilePage = () => {
   useEffect(() => {
     getOrdersHistory(setters.setOrdersHistory)
     getProfile(setters.setProfile)
+    setters.setCart([])
   }, []);
 
   return (
