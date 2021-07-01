@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Logo from '../../assets/logo.png'
 import { ContainerLogin, ContainerForm, InputEmail, InputPassword, ContainerButton } from './style'
 import { InputLabel, IconButton, InputAdornment, OutlinedInput, Button, CircularProgress } from '@material-ui/core'
@@ -10,9 +10,11 @@ import { login } from '../../services/user';
 import useForm from '../../hooks/useForm';
 import useUnprotectedPage from "../../hooks/useUnprotectedPage"
 import { GlobalStateContext } from '../../global/GlobalStateContext';
+import SplashPage from '../SplashPage/SplashPage';
 
 const LoginPage = () => {
     useUnprotectedPage();
+    const [start, setStart] = useState()
     const { states, setters } = useContext(GlobalStateContext);
     const history = useHistory()
     const [form, onChange, clear, setForm] = useForm({
@@ -37,6 +39,7 @@ const LoginPage = () => {
 
     return (
         <ContainerLogin>
+            {start && <SplashPage setStart={setStart} />}
             <img src={Logo} alt="logo" />
             <ContainerForm onSubmit={submitLogin} variant="outlined">
                 <Typography variant={'h6'}>Entrar</Typography>
