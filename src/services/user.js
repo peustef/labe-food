@@ -68,15 +68,19 @@ export const createAddress = (body, history, setLoading) => {
     });
 };
 
-export const updateAddress = (body, history) => {
+export const updateAddress = (body, history, setLoading, clear) => {
+  setLoading(true)
   axios
     .put(`${BASE_URL}/address`, body, getHeader())
     .then((res) => {
+      clear()
       alert("Endereço salvo!");
       goToProfile(history);
+      setLoading(false)
     })
     .catch((err) => {
       alert(err.response.data.message);
+      setLoading(false)
     });
 };
 

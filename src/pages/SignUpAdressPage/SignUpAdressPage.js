@@ -6,7 +6,7 @@ import { CircularProgress } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import Header from "../../components/Header/Header";
-import { goBack } from "../../routes/coordinator";
+import { goBack, goToSignUp } from "../../routes/coordinator";
 import useUnprotectedPageSignUpPage from "../../hooks/useUnprotectedSignUpPage";
 import useUnprotectedPage from "../../hooks/useUnprotectedPage";
 import { GlobalStateContext } from "../../global/GlobalStateContext";
@@ -35,7 +35,9 @@ const SignUpAdressPage = () => {
 
   return (
     <Main>
-      <Header />
+      <Header
+        buttonLeft={() => goToSignUp(history)}
+      />
       <strong>
         <p>Meu Endereço</p>
       </strong>
