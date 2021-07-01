@@ -12,14 +12,20 @@ export const getHeader = () => {
     return header
 }
 
-export const getRestaurants = (setRestaurants) => {
+export const getRestaurants = (setRestaurants, setLoading) => {
+    setLoading(true);
     axios.get(`${BASE_URL}/restaurants`, getHeader())
         .then((res) => {
             setRestaurants(res.data.restaurants)
+            setLoading(false);
         })
         .catch((err) => {
-            console.log(err)
-            alert(err)
+            if (err.response.status === 401) {
+            alert("Você precisa estar logado para acessar essa área!")
+            } else {
+                alert(err.message)
+            }
+            setLoading(false)
         })
 }
 

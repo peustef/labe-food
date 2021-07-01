@@ -1,28 +1,28 @@
-
-import React, { useContext, useEffect, useState } from 'react';
-import RestaurantCard from '../../components/RestaurantCard/RestaurantCard';
-import RestaurantTypeTabs from '../../components/RestaurantTypeTabs/RestaurantTypeTabs';
-import { TextField } from '@material-ui/core';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import SearchIcon from '@material-ui/icons/Search';
-import { Box } from '@material-ui/core';
-import { ContainerRestaurantCards } from '../style-Pages/style-Pages';
+import React, { useContext, useEffect, useState } from "react";
+import RestaurantCard from "../../components/RestaurantCard/RestaurantCard";
+import RestaurantTypeTabs from "../../components/RestaurantTypeTabs/RestaurantTypeTabs";
+import { TextField } from "@material-ui/core";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import SearchIcon from "@material-ui/icons/Search";
+import { Box } from "@material-ui/core";
+import { ContainerRestaurantCards } from "../style-Pages/style-Pages";
 import { GlobalStateContext } from "../../global/GlobalStateContext";
-import { useHistory } from 'react-router-dom';
-import { goToSearch } from '../../routes/coordinator';
-import Footer from '../../components/Footer/Footer';
-import Header from '../../components/Header/Header';
-import ActiveOrder from '../../components/ActiveOrder/ActiveOrder';
+import { useHistory } from "react-router-dom";
+import { goToSearch } from "../../routes/coordinator";
+import Footer from "../../components/Footer/Footer";
+import Header from "../../components/Header/Header";
+import ActiveOrder from "../../components/ActiveOrder/ActiveOrder";
 import { getRestaurants } from "../../services/restaurants";
 import useProtectedPage from "../../hooks/useProtectedPage";
+import { Loading } from "react-loading-dot/lib";
 import { getActiveOrders } from '../../services/order';
 
 const HomePage = () => {
   useProtectedPage();
   const history = useHistory();
-  const [filteredCategoryRestaurants, setFilteredCategoryRestaurants] = useState([])
+  const [filteredCategoryRestaurants, setFilteredCategoryRestaurants] =
+    useState([]);
   const { states, setters } = useContext(GlobalStateContext);
-
 
     const actOrder = states.activeOrder
 
@@ -39,33 +39,9 @@ const HomePage = () => {
         }
     }
 
-    const restaurantsList = states.restaurants.map((restaurant) => {
-        return (
-            <RestaurantCard
-                key={restaurant.id}
-                name={restaurant.name}
-                title={restaurant.title}
-                deliveryTime={restaurant.deliveryTime}
-                shipping={restaurant.shipping}
-                logoUrl={restaurant.logoUrl}
-                history={history} 
-                id={restaurant.id}
-            />
-        );
-    });
+ 
 
-
-  const filter = () => {
-    if (states.restaurants && states.restaurants.length > 0) {
-      const filtered = states.restaurants.filter((restaurant) => {
-        return restaurant.category.includes(states.currentCategory);
-      });
-      setFilteredCategoryRestaurants([...filtered]);
-    }
-  };
-
-
-  const filteredRestaurantsList = filteredCategoryRestaurants.map((restaurant) => {
+  const restaurantsList = states.restaurants.map((restaurant) => {
     return (
       <RestaurantCard
         key={restaurant.id}
@@ -80,8 +56,34 @@ const HomePage = () => {
     );
   });
 
+  const filter = () => {
+    if (states.restaurants && states.restaurants.length > 0) {
+      const filtered = states.restaurants.filter((restaurant) => {
+        return restaurant.category.includes(states.currentCategory);
+      });
+      setFilteredCategoryRestaurants([...filtered]);
+    }
+  };
+
+  const filteredRestaurantsList = filteredCategoryRestaurants.map(
+    (restaurant) => {
+      return (
+        <RestaurantCard
+          key={restaurant.id}
+          name={restaurant.name}
+          title={restaurant.title}
+          deliveryTime={restaurant.deliveryTime}
+          shipping={restaurant.shipping}
+          logoUrl={restaurant.logoUrl}
+          history={history}
+          id={restaurant.id}
+        />
+      );
+    }
+  );
+
   useEffect(() => {
-    getRestaurants(setters.setRestaurants);
+    getRestaurants(setters.setRestaurants, setters.setLoading);
     getActiveOrders(setters.setActiveOrder);
     filter();
   }, [states.currentCategory]);
@@ -112,10 +114,18 @@ const HomePage = () => {
       </Box>
 
       <ContainerRestaurantCards>
-          {filteredRestaurantsList.length > 0 ? filteredRestaurantsList : restaurantsList}
-          </ContainerRestaurantCards>
-        {order()}
-      <Footer history={history} colorHome={'primary'}/>
+        {states.loading ? (
+          <Loading />
+        ) : (
+          <div>
+            {filteredRestaurantsList.length > 0
+              ? filteredRestaurantsList
+              : restaurantsList}
+          </div>
+        )}
+      </ContainerRestaurantCards>
+      {order()}
+      <Footer history={history} />
     </div>
   );
 };
