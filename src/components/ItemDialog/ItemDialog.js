@@ -8,7 +8,7 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-import { StyledButton, Container } from './styled';
+import { Select, Container } from './styled';
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import useInput from '../../hooks/useInput';
 
@@ -29,12 +29,12 @@ const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
-      {onClose ? (
+      <Typography variant="subtitle2" align="center">{children}</Typography>
+      {/* {onClose ? (
         <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
           <CloseIcon />
         </IconButton>
-      ) : null}
+      ) : null} */}
     </MuiDialogTitle>
   );
 });
@@ -71,14 +71,14 @@ export default function ItemDialog(props) {
   return (
     <Container>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-         {product.quantity ? product.quantity : 1}
+         { product && product.quantity ? product.quantity : 1}
       </Button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           Selecione a quantidade desejada
         </DialogTitle>
         <DialogContent dividers>
-          <select onChange={setSelect}  >              
+          <Select onChange={setSelect}  >              
             <option value={1}> 1 </option>
             <option value={2}> 2 </option>
             <option value={3}> 3 </option>
@@ -89,7 +89,7 @@ export default function ItemDialog(props) {
             <option value={8}> 8 </option>
             <option value={9}> 9 </option>
             <option value={10}> 10 </option>
-          </select>
+          </Select>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose} color="primary">

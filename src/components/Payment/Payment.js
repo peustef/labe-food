@@ -14,11 +14,13 @@ const Payment = (props) => {
         setPayment(event.target.value);
     };
 
+    const shippingValue = states.cart.length ? props.shipping : 0
+
     const itemSum = []
     states.cart && states.cart.forEach((item) => {
         itemSum.push(item.price * item.quantity)
     });
-    const totalValue = itemSum.reduce((a, b) => a + b, props.shipping)
+    const totalValue = itemSum.reduce((a, b) => a + b, shippingValue)
 
     const itensRequest = []
     states.cart && states.cart.forEach((item) => {
@@ -40,7 +42,7 @@ const Payment = (props) => {
     return (
         <ContainerPayment>
             <Shipping>
-                <Typography variant={'body1'}  >Frete R${props.shipping},00</Typography>
+                <Typography variant={'body1'}  >Frete R${ shippingValue},00</Typography>
             </Shipping>
             <SubTotal>
                 <Typography variant={'body1'} >SUBTOTAL</Typography>

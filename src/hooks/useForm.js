@@ -11,7 +11,7 @@ function useForm(initialValue) {
 
     // limpa campos
     const clear = () => {
-        setForm(initialValue)
+        setForm('')
     }
     return [form, onChange, clear, setForm]
 }

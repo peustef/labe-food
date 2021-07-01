@@ -41,13 +41,11 @@ const ItensCard = (props) => {
 
     return (
         <StyledCard className={classes.root} >
-
             <CardMedia
                 className={classes.cover}
                 image={props.photoUrl}
                 title=""
             />
-
             <RelaDiv>
                 { buttonState ? "" : <ItemDialog id={props.id}/> }
                 <CardContent className={classes.content}>

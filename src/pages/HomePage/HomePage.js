@@ -15,6 +15,7 @@ import ActiveOrder from "../../components/ActiveOrder/ActiveOrder";
 import { getRestaurants } from "../../services/restaurants";
 import useProtectedPage from "../../hooks/useProtectedPage";
 import { Loading } from "react-loading-dot/lib";
+import { getActiveOrders } from '../../services/order';
 
 const HomePage = () => {
   useProtectedPage();
@@ -23,20 +24,22 @@ const HomePage = () => {
     useState([]);
   const { states, setters } = useContext(GlobalStateContext);
 
-  const actOrder = states.activeOrder;
+    const actOrder = states.activeOrder
 
-  // console.log(actOrder)
+    console.log(actOrder)
 
-  const order = () => {
-    if (actOrder !== null) {
-      return (
-        <ActiveOrder
-          name={actOrder.restaurantName}
-          price={actOrder.totalPrice}
-        />
-      );
+    const order = () => {
+        if (actOrder !== null){
+            return (
+                <ActiveOrder 
+                name={actOrder.restaurantName}
+                price={actOrder.totalPrice}
+                />
+            )
+        }
     }
-  };
+
+ 
 
   const restaurantsList = states.restaurants.map((restaurant) => {
     return (
@@ -81,6 +84,7 @@ const HomePage = () => {
 
   useEffect(() => {
     getRestaurants(setters.setRestaurants, setters.setLoading);
+    getActiveOrders(setters.setActiveOrder);
     filter();
   }, [states.currentCategory]);
 
