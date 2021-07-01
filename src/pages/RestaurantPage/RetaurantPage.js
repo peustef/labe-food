@@ -5,10 +5,11 @@ import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { getRestaurantsDetails } from '../../services/restaurants';
 import ItensCard from '../../components/ItensCard/ItensCard';
 import Typography from '@material-ui/core/Typography';
-import { ItensCont } from './style';
+import { ItensCont, MainCont } from './style';
 import Header from '../../components/Header/Header';
-import { goBack } from '../../routes/coordinator';
+import { goBack, goToChart } from '../../routes/coordinator';
 import useProtectedPage from '../../hooks/useProtectedPage';
+import Button from '@material-ui/core/Button';
 
 const RetaurantPage = () => {
     useProtectedPage();
@@ -19,7 +20,6 @@ const RetaurantPage = () => {
     useLayoutEffect(() => {
         getRestaurantsDetails(setters.setRestaurantDetail, params.id)
     }, [setters.setRestaurantDetail, params.id])
-
 
     const restaurant = states.restaurantDetail
     const categories = []
@@ -56,10 +56,17 @@ const RetaurantPage = () => {
         )
     })
 
+    const verifyCart = () => {
+        if (window.confirm("Há itens no seu carrinho, gostaria de remove-los?")) {
+            setters.setCart([])
+            goBack(history)
+        }
+    }
+
     return (
-        <div>
-            <Header 
-                buttonLeft={() => goBack(history)}
+        <MainCont>
+            <Header
+                buttonLeft={states.cart.length ? () => verifyCart() : () => goBack(history)}
                 title={'Restaurante'}
             />
             <RestaurantDetailsCard
@@ -70,8 +77,9 @@ const RetaurantPage = () => {
                 shipping={restaurant.shipping}
                 address={restaurant.address}
             />
+            {states.cart.length ? <Button variant={'contained'} color={'primary'} onClick={() => { goToChart(history) }} >Finalizar compra</Button> : ""}
             {itensList}
-        </div>
+        </MainCont >
     );
 };
 
