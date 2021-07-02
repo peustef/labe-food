@@ -73,7 +73,6 @@ const ProfilePage = () => {
               <EditOutlinedIcon />
             </Button>
           </ContainerAdress>
-          <LogoutButton onClick={onClickLogout} color='primary'>LOGOUT</LogoutButton>
           <ContainerOrderHistory>
             <ContainerTitleOrder>
               <Typography variant={"body1"}>Histórico de Pedidos</Typography>

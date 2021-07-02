@@ -20,6 +20,7 @@ export const Main = styled.div`
       justify-content:center;
       flex-direction:column;
       align-items:center;
+      margin-top: 1rem;
       input{
           width:20.5rem;
       }
