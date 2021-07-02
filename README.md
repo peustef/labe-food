@@ -1,4 +1,4 @@
-# <h1 align='center'> 4Food </h1>
+# <h1 align='center'> iFuture - 4Food </h1>
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/48807462/124322810-86319980-db56-11eb-9af8-5b49e574d073.png" alt="4Food">
