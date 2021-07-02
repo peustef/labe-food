@@ -75,7 +75,6 @@ const RetaurantPage = () => {
         }
     };
 
-    console.log(states.loading)
     return (
         <MainCont>
             <Header

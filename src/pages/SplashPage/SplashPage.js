@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container } from './style';
 import Logo from "../../assets/logo-future-eats.svg";
 import { goToHome, goToLogin } from '../../routes/coordinator';
@@ -9,9 +9,9 @@ const SplashPage = () => {
     const history = useHistory()
 
     setTimeout(() => {
-        if(token) {
+        if (token) {
             goToHome(history)
-        } else{
+        } else {
             goToLogin(history)
         }
     }, 2500);
@@ -23,4 +23,4 @@ const SplashPage = () => {
     );
 };
 
-export default SplashPage; 
+export default SplashPage;
