@@ -13,18 +13,15 @@ Nome dos integrantes:
 
 Link do Surge: https://labe-food2.surge.sh/
 
+Login:
+usuário:
+senha:
+
 O que funciona: 
 -
 - Tarefas principais realizadas
 
-- Página login:
-  - 
-
-- Página cadastro:
-  - 
-
-- Página home:
-  - 
+Funcionalidades adicionais:
 
 - Página restaurante
   - Adição (do layout proposto) de um botão para ir diretamente ao carrinho, reduzindo o percurso que o(a) usuário(a) precisa fazer e desistimulando que ele(a) tente adicionar itens de restaurantes diferentes no carrinho (o que não é possível). 
@@ -34,16 +31,6 @@ O que funciona:
 
 - Página perfil
   - Adição (do layout proposto) de um botão de logout 
-
-- Página editar perfil:
-  - 
-
-- Página editar endereço:
-  - 
-
-
-- Página erro:
-  - 
 
 
 O que não funciona: 
