@@ -17,6 +17,14 @@ Login:
 usuário: labefoodteste@gmail.com
 senha: 123456
 
+Bibliotecas utilizadas:
+axios
+react-router-dom
+styled-components
+@material-ui/core
+@material-ui/icons
+react-loading-dot
+
 O que funciona:
 -
 - Tarefas principais realizadas
