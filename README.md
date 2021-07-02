@@ -1,6 +1,8 @@
 # <h1 align='center'> 4Food </h1>
 
+<p align="center">
 ![logo-future-eats-invert@3x](https://user-images.githubusercontent.com/48807462/124322810-86319980-db56-11eb-9af8-5b49e574d073.png)
+</p>
 
  ## Sobre
 ### 4Food - Restaurantes na porta da sua casa
