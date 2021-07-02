@@ -29,7 +29,7 @@ export const login = (body, history, setLoading, clear) => {
     });
 };
 
-export const signUp = (body, history, setLoading) => {
+export const signUp = (body, history, setLoading, clear) => {
   setLoading(true);
   axios
     .post(`${BASE_URL}/signup`, body)
@@ -38,6 +38,7 @@ export const signUp = (body, history, setLoading) => {
       alert("Conta criada com sucesso!");
       goToSignUpAdress(history);
       setLoading(false);
+      clear()
     })
     .catch((err) => {
       alert(err.response.data.message);
@@ -45,7 +46,7 @@ export const signUp = (body, history, setLoading) => {
     });
 };
 
-export const createAddress = (body, history, setLoading) => {
+export const createAddress = (body, history, setLoading, clear) => {
   setLoading(true);
   const token = localStorage.getItem("tokenSignUp");
 
@@ -62,6 +63,7 @@ export const createAddress = (body, history, setLoading) => {
       alert("Endereço salvo!");
       goToHome(history);
       setLoading(false);
+      clear()
     })
     .catch((err) => {
       alert(err.response.data.message);

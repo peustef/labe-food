@@ -6,7 +6,7 @@ import { CircularProgress } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import Header from "../../components/Header/Header";
-import { goBack, goToSignUp } from "../../routes/coordinator";
+import { goToSignUp } from "../../routes/coordinator";
 import useUnprotectedPageSignUpPage from "../../hooks/useUnprotectedSignUpPage";
 import useUnprotectedPage from "../../hooks/useUnprotectedPage";
 import { GlobalStateContext } from "../../global/GlobalStateContext";
@@ -29,8 +29,7 @@ const SignUpAdressPage = () => {
 
   const onSubmitForm = (event) => {
     event.preventDefault();
-    createAddress(form, history, setters.setLoading);
-    clear();
+    createAddress(form, history, setters.setLoading, clear);
   };
 
   return (
