@@ -124,7 +124,7 @@ const HomePage = () => {
         )}
       </ContainerRestaurantCards>
       {order()}
-      <Footer history={history} />
+      <Footer history={history} colorHome={'primary'}/>
     </div>
   );
 };
