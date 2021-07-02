@@ -117,12 +117,10 @@ const HomePage = () => {
       </Box>
       {states.restaurants && states.restaurants.length !== 0 && states.loading === false ? 
         <ContainerRestaurantCards> 
-            <div>
               {filteredRestaurantsList.length > 0
                 ? filteredRestaurantsList
                 : restaurantsList}
               {order()}
-            </div>
         </ContainerRestaurantCards>
       : <Loading />}
 
