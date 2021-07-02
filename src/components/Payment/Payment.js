@@ -1,9 +1,10 @@
 import { Button, FormControl, FormControlLabel, Radio, RadioGroup, Typography } from '@material-ui/core';
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ContainerPayment, PaymentInfo, Shipping, SubTotal } from './style';
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { placeOrder } from '../../services/order';
 import { useHistory } from 'react-router-dom';
+import { fixPrice } from '../../constants/functions';
 
 const Payment = (props) => {
     const [payment, setPayment] = React.useState('');
@@ -29,11 +30,6 @@ const Payment = (props) => {
             paymentMethod: payment
         }
         return requestBody
-    }
-
-    const fixPrice = (value) => {
-        const num = value.toFixed(2).replace('.', ',')
-        return num
     }
 
     const sum = () => {

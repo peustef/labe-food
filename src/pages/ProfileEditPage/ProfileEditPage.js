@@ -25,7 +25,7 @@ const ProfileEditPage = () => {
     })
 
     useEffect(() => {
-        getProfile(setters.setProfile)
+        getProfile(setters.setProfile, setLoading)
       }, []);
 
     const onSubmitForm = (event) => {

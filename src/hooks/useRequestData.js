@@ -1,21 +1,14 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { getHeader } from '../constants/header';
 
 const useRequestData = (initialData, url) => {
     const [data, setData] = useState(initialData)
 
-    // useEffect(() => {
-    //     getRequest()
-    // }, [])
 
     const getRequest = () => {
-        const header = {
-            headers: {
-                auth: localStorage.getItem('token')
-            }
-        }
-
-        axios.get(url, header)
+ 
+        axios.get(url, getHeader())
             .then((res) => {
                 setData(res.data)
             })

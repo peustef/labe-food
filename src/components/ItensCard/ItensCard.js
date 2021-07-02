@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import { StyledCard, AddButton, RelaDiv, RemoveButton } from './styled';
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import ItemDialog from '../ItemDialog/ItemDialog';
+import { fixPrice } from '../../constants/functions';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -47,11 +48,6 @@ const ItensCard = (props) => {
         setButtonState(!buttonState)
     }
 
-    const fixPrice = () => {
-        const num = props.price.toFixed(2).replace('.', ',')
-        return num
-    }
-
     useEffect(() => {
         verifyCart()
     }, []);
@@ -75,7 +71,7 @@ const ItensCard = (props) => {
                     </Typography>
 
                     <Typography variant="h6" component="p">
-                        R$ {fixPrice()}
+                        R$ {fixPrice(props.price)}
                     </Typography>
                 </CardContent>
 

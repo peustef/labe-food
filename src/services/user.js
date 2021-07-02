@@ -1,17 +1,8 @@
 import axios from "axios";
+import { getHeader } from "../constants/header";
 import { BASE_URL } from "../constants/Urls";
 import { goToHome, goToProfile, goToSignUpAdress } from "../routes/coordinator";
 
-export const getHeader = () => {
-  const token = localStorage.getItem("token");
-
-  const header = {
-    headers: {
-      auth: token,
-    },
-  };
-  return header;
-};
 
 export const login = (body, history, setLoading, clear) => {
   setLoading(true);
@@ -25,7 +16,7 @@ export const login = (body, history, setLoading, clear) => {
     })
     .catch((err) => {
       setLoading(false);
-      alert("Erro ao fazer Login");
+      alert(err.response.data.message);
     });
 };
 
@@ -48,15 +39,9 @@ export const signUp = (body, history, setLoading, clear) => {
 
 export const createAddress = (body, history, setLoading, clear) => {
   setLoading(true);
-  const token = localStorage.getItem("tokenSignUp");
 
-  const header = {
-    headers: {
-      auth: token,
-    },
-  };
   axios
-    .put(`${BASE_URL}/address`, body, header)
+    .put(`${BASE_URL}/address`, body, getHeader())
     .then((res) => {
       localStorage.removeItem("tokenSignUp");
       localStorage.setItem("token", res.data.token);
