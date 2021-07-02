@@ -4,7 +4,7 @@ import { BASE_URL } from "../constants/Urls";
 import { goToHome, goToProfile, goToSignUpAdress } from "../routes/coordinator";
 
 
-export const login = (body, history, setLoading) => {
+export const login = (body, history, setLoading, clear) => {
   setLoading(true);
   axios
     .post(`${BASE_URL}/login`, body)
@@ -12,6 +12,7 @@ export const login = (body, history, setLoading) => {
       localStorage.setItem("token", res.data.token);
       setLoading(false);
       goToHome(history);
+      clear()
     })
     .catch((err) => {
       setLoading(false);
@@ -19,7 +20,7 @@ export const login = (body, history, setLoading) => {
     });
 };
 
-export const signUp = (body, history, setLoading) => {
+export const signUp = (body, history, setLoading, clear) => {
   setLoading(true);
   axios
     .post(`${BASE_URL}/signup`, body)
@@ -28,6 +29,7 @@ export const signUp = (body, history, setLoading) => {
       alert("Conta criada com sucesso!");
       goToSignUpAdress(history);
       setLoading(false);
+      clear()
     })
     .catch((err) => {
       alert(err.response.data.message);
@@ -35,7 +37,7 @@ export const signUp = (body, history, setLoading) => {
     });
 };
 
-export const createAddress = (body, history, setLoading) => {
+export const createAddress = (body, history, setLoading, clear) => {
   setLoading(true);
 
   axios
@@ -46,6 +48,7 @@ export const createAddress = (body, history, setLoading) => {
       alert("Endereço salvo!");
       goToHome(history);
       setLoading(false);
+      clear()
     })
     .catch((err) => {
       alert(err.response.data.message);
@@ -69,14 +72,17 @@ export const updateAddress = (body, history, setLoading, clear) => {
     });
 };
 
-export const getFullAddress = (setter) => {
+export const getFullAddress = (setter, setLoading) => {
+  setLoading(true)
   axios
     .get(`${BASE_URL}/profile/address`, getHeader())
     .then((res) => {
       setter(res.data.address);
+      setLoading(false)
     })
     .catch((err) => {
       alert("Erro ao alterar Endereço");
+      setLoading(false)
     });
 };
 

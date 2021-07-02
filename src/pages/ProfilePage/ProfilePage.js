@@ -21,23 +21,26 @@ import { getOrdersHistory } from "../../services/order";
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { getProfile } from "../../services/profile";
 import { Loading } from "react-loading-dot/lib";
+import { getFullAddress } from "../../services/user";
 
 const ProfilePage = () => {
   useProtectedPage();
   const history = useHistory();
   const { states, setters } = useContext(GlobalStateContext);
   const profile = states.profile;
+  const address = states.address;
 
   useEffect(() => {
     getOrdersHistory(setters.setOrdersHistory, setters.setLoading);
     getProfile(setters.setProfile, setters.setLoading);
+    getFullAddress(setters.setAddress, setters.setLoading)
     setters.setCart([])
   }, []);
 
   return (
     <div>
       <Header title={"Meu Perfil"} />
-      {states.loading ? (
+      {states.loading && states.address ? (
         <Loading />
       ) : (
         <div>
@@ -56,7 +59,7 @@ const ProfilePage = () => {
               <Typography variant={"body1"} color={"secondary"}>
                 Endereço de Entrega
               </Typography>
-              <Typography variant={"body1"}>{profile.address}</Typography>
+              <Typography variant={"body1"}>{address.street}, {address.number}, {address.complement} - {address.neighbourhood}</Typography>
             </div>
             <Button onClick={() => goToEditAddressPage(history)}>
               <EditOutlinedIcon />

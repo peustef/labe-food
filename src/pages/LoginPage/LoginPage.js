@@ -33,8 +33,7 @@ const LoginPage = () => {
 
     const submitLogin = (e) => {
         e.preventDefault()
-        login(form, history, setters.setLoading)
-        clear()
+        login(form, history, setters.setLoading, clear)
     }
 
     return (
