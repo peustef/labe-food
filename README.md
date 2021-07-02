@@ -54,11 +54,11 @@ Funcionalidades adicionais:
       <td align="center"><a href="https://github.com/Biancasleonardo">
     <img src="https://avatars.githubusercontent.com/u/61589574?v=4" width="100px" alt="Imagem do perfil de Bianca Leonardo"/>
     <br />
-    <sub><b>Pedro Stefani Saldanha</b></sub>
+    <sub><b>Bianca de Souza Leonardo</b></sub>
         <td align="center"><a href="https://github.com/peustef">
     <img src="https://avatars.githubusercontent.com/u/20777850?v=4" width="100px" alt="Imagem do perfil de Pedro Stefani"/>
     <br />
-    <sub><b>Bianca de Souza Leonardo</b></sub>
+    <sub><b>Pedro Stefani Saldanha</b></sub>
 <td align="center"><a href="https://github.com/hgalvao98">
     <img src="https://avatars.githubusercontent.com/u/81254055?v=4" width="100px" alt="Imagem do perfil de Henrique"/>
     <br />
