@@ -24,6 +24,7 @@ import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { getProfile } from "../../services/profile";
 import { Loading } from "react-loading-dot/lib";
 import { getFullAddress } from "../../services/user";
+import GoToTop from "../../components/GoToTop/GoToTop";
 
 const ProfilePage = () => {
   useProtectedPage();
@@ -82,6 +83,7 @@ const ProfilePage = () => {
         </div>
       )}
       <Footer history={history} colorProfile={"primary"} />
+      <GoToTop />
     </div>
   );
 };
