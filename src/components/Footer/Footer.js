@@ -1,17 +1,25 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import { goToChart, goToHome, goToProfile } from '../../routes/coordinator';
 import { StickFooter, StyledIconButton } from './style';
-
+import { GlobalStateContext } from "../../global/GlobalStateContext";
 
 const Footer = ({ history, colorHome, colorShopping, colorProfile }) => {
+    const { setters, states } = useContext(GlobalStateContext);
+
+    const verifyCart = () => {
+        if (window.confirm("Há itens no seu carrinho, gostaria de remove-los?")) {
+            setters.setCart([])
+            goToHome(history)
+        }
+    }
 
     return (
         <div>
             <StickFooter>
-                <StyledIconButton color={colorHome ? colorHome : 'secondary'} onClick={() => goToHome(history)}>
+                <StyledIconButton color={colorHome ? colorHome : 'secondary'} onClick={ states.cart.length ? () => verifyCart() : () => goToHome(history)}>
                     <HomeOutlinedIcon fontSize="large" />
                 </StyledIconButton>
                 <StyledIconButton color={colorShopping ? colorShopping : 'secondary'} onClick={() => goToChart(history)}>
@@ -22,8 +30,6 @@ const Footer = ({ history, colorHome, colorShopping, colorProfile }) => {
                 </StyledIconButton>
             </StickFooter>
         </div>
-
-
     );
 };
 
