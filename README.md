@@ -30,7 +30,7 @@ O que funciona:
   - 
 
 - Página restaurante
-  - 
+  - Adição (no layout proposto) de um botão para ir diretamente ao carrinho, reduzindo o percurso que o(a) usuário(a) precisa fazer e desistimulando que ele(a) tente adicionar itens de restaurantes diferentes no carrinho (o que não é possível). 
 
 - Página perfil
   - 
