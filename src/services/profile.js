@@ -27,6 +27,7 @@ export const getProfile = (setProfile, setLoading) => {
       setLoading(false)
     })
     .catch((err) => {
+      alert("Erro ao alterar Perfil");
       setLoading(false)
     })
 }

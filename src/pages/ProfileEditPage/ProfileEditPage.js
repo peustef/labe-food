@@ -5,9 +5,8 @@ import useForm from '../../hooks/useForm'
 import { editProfile, getProfile } from '../../services/profile';
 import { CircularProgress } from '@material-ui/core'
 import Header from '../../components/Header/Header';
-import { goBack, goToProfile } from '../../routes/coordinator';
+import { goToProfile } from '../../routes/coordinator';
 import useProtectedPage from '../../hooks/useProtectedPage';
-import GlobalState from '../../global/GlobalState';
 import { GlobalStateContext } from '../../global/GlobalStateContext';
 import { useContext } from 'react';
 

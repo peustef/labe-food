@@ -72,14 +72,17 @@ export const updateAddress = (body, history, setLoading, clear) => {
     });
 };
 
-export const getFullAddress = (setter) => {
+export const getFullAddress = (setter, setLoading) => {
+  setLoading(true)
   axios
     .get(`${BASE_URL}/profile/address`, getHeader())
     .then((res) => {
       setter(res.data.address);
+      setLoading(false)
     })
     .catch((err) => {
       alert("Erro ao alterar Endereço");
+      setLoading(false)
     });
 };
 

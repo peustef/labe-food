@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import { useHistory } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import Header from "../../components/Header/Header";
-import { goBack, goToProfile } from "../../routes/coordinator";
+import { goToProfile } from "../../routes/coordinator";
 import { getFullAddress, updateAddress } from "../../services/user";
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { useEffect } from "react";
@@ -27,7 +27,7 @@ const EditAddressPage = () => {
     });
 
     useEffect(() => {
-        getFullAddress(setters.setAddress)
+        getFullAddress(setters.setAddress, setLoading)
     }, []);
 
     const onSubmitForm = (event) => {
@@ -42,7 +42,7 @@ const EditAddressPage = () => {
                 title={'Endereço'}
             />
             <form onSubmit={onSubmitForm}>
-                <Grid item>
+                <Grid>
                     <TextField
                         type="text"
                         name={"street"}
@@ -54,9 +54,9 @@ const EditAddressPage = () => {
                         variant="outlined"
                     />
                 </Grid>
-                <Grid item>
+                <Grid>
                     <TextField
-                        type=""
+                        type="text"
                         name={"number"}
                         value={form.number}
                         onChange={onChange}
@@ -66,9 +66,9 @@ const EditAddressPage = () => {
                         variant="outlined"
                     />
                 </Grid>
-                <Grid item>
+                <Grid>
                     <TextField
-                        type=""
+                        type="text"
                         name={"complement"}
                         value={form.complement}
                         onChange={onChange}                        
@@ -77,7 +77,7 @@ const EditAddressPage = () => {
                         variant="outlined"
                     />
                 </Grid>
-                <Grid item>
+                <Grid>
                     <TextField
                         type="text"
                         name={"neighbourhood"}
@@ -89,7 +89,7 @@ const EditAddressPage = () => {
                         variant="outlined"
                     />
                 </Grid>
-                <Grid item>
+                <Grid>
                     <TextField
                         type="text"
                         name={"city"}
@@ -101,7 +101,7 @@ const EditAddressPage = () => {
                         variant="outlined"
                     />
                 </Grid>
-                <Grid item>
+                <Grid>
                     <TextField
                         type="text"
                         name={"state"}
