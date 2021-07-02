@@ -40,8 +40,19 @@ export const signUp = (body, history, setLoading, clear) => {
 export const createAddress = (body, history, setLoading, clear) => {
   setLoading(true);
 
+  const getHeaderSignUp = () => {
+    const tokenSignUp = localStorage.getItem('tokenSignUp')
+
+    const header = {
+      headers: {
+        auth: tokenSignUp
+      }
+    }
+    return header
+  }
+
   axios
-    .put(`${BASE_URL}/address`, body, getHeader())
+    .put(`${BASE_URL}/address`, body, getHeaderSignUp())
     .then((res) => {
       localStorage.removeItem("tokenSignUp");
       localStorage.setItem("token", res.data.token);
