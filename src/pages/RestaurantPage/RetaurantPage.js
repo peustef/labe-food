@@ -68,6 +68,7 @@ const RetaurantPage = () => {
             <Header
                 buttonLeft={states.cart.length ? () => verifyCart() : () => goToHome(history)}
                 title={'Restaurante'}
+                icon={'back'}
             />
             <RestaurantDetailsCard
                 name={restaurant.name}

@@ -64,7 +64,7 @@ const SignUpPage = () => {
 
   return (
     <Main>
-      <Header buttonLeft={() => goToLogin(history)} />
+      <Header buttonLeft={() => goToLogin(history)} icon={'back'}/>
       <img src={logo} />
       <strong>
         <p>Cadastrar</p>

@@ -65,6 +65,7 @@ const SearchPage = () => {
       <Header
         buttonLeft={() => goToHome(history)}
         title={'Busca'}
+        icon={'back'}
       />
       <Box ml={2} mr={2}>
         <TextField
