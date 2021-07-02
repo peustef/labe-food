@@ -27,7 +27,7 @@ Funcionalidades adicionais:
   - Adição (do layout proposto) de um botão para ir diretamente ao carrinho, reduzindo o percurso que o(a) usuário(a) precisa fazer e desistimulando que ele(a) tente adicionar itens de restaurantes diferentes no carrinho (o que não é possível). 
   
 - Página carrinho
-  - Adição (do layout proposto) de um botão para voltar ao restaurante e continuar adicionando.
+  - Adição (do layout proposto) de um botão para voltar ao restaurante e continuar adicionando outros itens ao carrinho.
 
 - Página perfil
   - Adição (do layout proposto) de um botão de logout 
