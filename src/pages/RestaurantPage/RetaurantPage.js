@@ -83,8 +83,7 @@ const RetaurantPage = () => {
                 icon={'back'}
             />
             <div>
-                {states.loading === true ? <Loading /> : null}
-                {states.restaurantDetail &&
+                {states.loading === true ? <Loading /> : states.restaurantDetail &&
                     <RestaurantDetailsCard
                         name={restaurant.name}
                         category={restaurant.category}

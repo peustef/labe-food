@@ -35,12 +35,11 @@ const SignUpAdressPage = () => {
   return (
     <Main>
       <Header
-        buttonLeft={() => goToSignUp(history)}
-        icon={'back'}
+        title={'Meu endereço'}
       />
-      <strong>
+      {/* <strong>
         <p>Meu Endereço</p>
-      </strong>
+      </strong> */}
       <form onSubmit={onSubmitForm}>
         <Grid item>
           <TextField
