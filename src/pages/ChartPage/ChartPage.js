@@ -16,7 +16,7 @@ import useProtectedPage from "../../hooks/useProtectedPage";
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { getProfile } from "../../services/profile";
 import { Loading } from "react-loading-dot/lib";
-import { goToRestaurant } from "../../routes/coordinator";
+import { goBack } from "../../routes/coordinator";
 import Button from '@material-ui/core/Button';
 
 const ChartPage = () => {
@@ -62,7 +62,7 @@ const ChartPage = () => {
                             <ButtonCont>
                                 <Button
                                     variant={'outlined'}
-                                    color={'primary'} onClick={() => { goToRestaurant(history) }} >Continue comprando</Button>
+                                    color={'primary'} onClick={() => { goBack(history) }} >Continue comprando</Button>
                             </ButtonCont>
 
                             <ContainerInfoCart>

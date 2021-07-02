@@ -6,9 +6,6 @@ import { StyledButton, StyledImg } from './style';
 import { useHistory } from 'react-router-dom';
 import { goToHome } from '../../routes/coordinator';
 
-
-
-
 const ErrorPage = () => {
     const history = useHistory()
 
