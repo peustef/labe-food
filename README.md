@@ -15,12 +15,12 @@ Aplicação de serviço de entregas para restaurantes. Desenvolvida em React.js
 
 ## Design
 https://zpl.io/scene/VDdGEYr
-Feito por Camila Mizutani
+- Feito por Camila Mizutani
 
 ## Link do Surge
 <a href="https://labe-food2.surge.sh/">https://labe-food2.surge.sh/</a>
-<b>Login:</b> labefoodteste@gmail.com
-<b>senha:</b> 123456
+- <b>Login:</b> labefoodteste@gmail.com
+ -<b>senha:</b> 123456
 
 ## O que funciona
 - Tarefas principais realizadas
