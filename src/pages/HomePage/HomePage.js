@@ -15,7 +15,8 @@ import ActiveOrder from "../../components/ActiveOrder/ActiveOrder";
 import { getRestaurants } from "../../services/restaurants";
 import useProtectedPage from "../../hooks/useProtectedPage";
 import { Loading } from "react-loading-dot/lib";
-import { getActiveOrders } from '../../services/order';
+import { getActiveOrders } from "../../services/order";
+import GoToTop from "../../components/GoToTop/GoToTop";
 
 const HomePage = () => {
   useProtectedPage();
@@ -24,7 +25,7 @@ const HomePage = () => {
     useState([]);
   const { states, setters } = useContext(GlobalStateContext);
 
-  const actOrder = states.activeOrder
+  const actOrder = states.activeOrder;
 
   const order = () => {
     if (actOrder && actOrder.length !== 0) {
@@ -33,11 +34,9 @@ const HomePage = () => {
           name={actOrder.restaurantName}
           price={actOrder.totalPrice}
         />
-      )
+      );
     }
-  }
-
-
+  };
 
   const restaurantsList = states.restaurants.map((restaurant) => {
     return (
@@ -80,11 +79,16 @@ const HomePage = () => {
     }
   );
 
+  const clearFilter = () => {
+    setters.setRestaurants([]);
+  };
+
   useEffect(() => {
+    clearFilter();
     getRestaurants(setters.setRestaurants, setters.setLoading);
     getActiveOrders(setters.setActiveOrder);
     filter();
-    setters.setCart([])
+    setters.setCart([]);
   }, [states.currentCategory]);
 
   return (
@@ -111,20 +115,18 @@ const HomePage = () => {
       <Box ml={1}>
         <RestaurantTypeTabs />
       </Box>
+      {states.restaurants && states.restaurants.length !== 0 && states.loading === false ? 
+        <ContainerRestaurantCards> 
+            <div>
+              {filteredRestaurantsList.length > 0
+                ? filteredRestaurantsList
+                : restaurantsList}
+              {order()}
+            </div>
+        </ContainerRestaurantCards>
+      : <Loading />}
 
-      <ContainerRestaurantCards>
-        {states.loading ? (
-          <Loading />
-        ) : (
-          <div>
-            {filteredRestaurantsList.length > 0
-              ? filteredRestaurantsList
-              : restaurantsList}
-          </div>
-        )}
-      </ContainerRestaurantCards>
-      {order()}
-      <Footer history={history} colorHome={'primary'}/>
+      <Footer history={history} colorHome={"primary"} />
     </div>
   );
 };

@@ -16,17 +16,19 @@ export const getRestaurants = (setRestaurants, setLoading) => {
             } else {
                 alert(err.message)
             }
-            setLoading(false)
+            setLoading(false);
         })
 }
 
-export const getRestaurantsDetails = (setRestaurantDetail, id) => {
+export const getRestaurantsDetails = (setRestaurantDetail, id, setLoading) => {
+    setLoading(true);
     axios.get(`${BASE_URL}/restaurants/${id}`, getHeader())
         .then((res) => {
             setRestaurantDetail(res.data.restaurant)
+            setLoading(false);
         })
         .catch((err) => {
-            console.log(err)
-            alert(err)
+            alert(err.message)
+            setLoading(false);
         })
 }
