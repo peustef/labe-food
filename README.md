@@ -45,17 +45,17 @@ https://zpl.io/scene/VDdGEYr
   - Capacidade de remover itens do carrinho
 
 - Carrinho e finalização de compra
- - Visualizção da lista de itens adicionados ao carrinho
- - Visualização do endereço de entrega no carrinho
- - Total da compra de acordo com a quantidade e preço dos itens
- - Seleção de forma de pagamento
- - Assim que o pedido é feito, é renderizado alguns detalhes do pedido em andamento na página principal
+  - Visualizção da lista de itens adicionados ao carrinho
+  - Visualização do endereço de entrega no carrinho
+  - Total da compra de acordo com a quantidade e preço dos itens
+  - Seleção de forma de pagamento
+  - Assim que o pedido é feito, é renderizado alguns detalhes do pedido em andamento na página principal
 
 - Perfil
- - Visualização de dados pessoais e endereço
- - Edição de dados pessoais e endereço
- - No caso de informação incorreta na edição, alerta
- - Histórico de pedidos concluídos
+  - Visualização de dados pessoais e endereço
+  - Edição de dados pessoais e endereço
+  - No caso de informação incorreta na edição, alerta
+  - Histórico de pedidos concluídos
 
 Funcionalidades adicionais:
 
