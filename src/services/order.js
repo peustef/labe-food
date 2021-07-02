@@ -1,6 +1,7 @@
 import { BASE_URL } from "../constants/Urls";
 import axios from "axios";
 import { goToHome } from "../routes/coordinator";
+import { getHeader } from "../constants/header";
 
 export const placeOrder = (body, history, restaurantId) => {
   axios
@@ -23,21 +24,10 @@ export const getOrdersHistory = (setOrders, setLoading) => {
       setLoading(false);
     })
     .catch((err) => {
-      alert(err);
+      alert(err.response.data.message);
       setLoading(false);
     });
 };
-
-export const getHeader = () => {
-    const token = localStorage.getItem('token')
-
-    const header = {
-        headers: {
-            auth: token
-        }
-    }
-    return header
-}
 
 export const getActiveOrders = (setActiveOrder) => {
     axios.get(`${BASE_URL}/active-order`, getHeader())
@@ -45,7 +35,7 @@ export const getActiveOrders = (setActiveOrder) => {
             setActiveOrder(res.data.order)
         })
         .catch((err) => {
-            alert(err)
+            // alert(err.response.data.message)
         })
 }
 

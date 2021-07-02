@@ -1,17 +1,7 @@
 import { goBack } from "../routes/coordinator";
 import axios from "axios";
 import { BASE_URL } from "../constants/Urls";
-
-export const getHeader = () => {
-    const token = localStorage.getItem('token')
-
-    const header = {
-        headers: {
-            auth: token
-        }
-    }
-    return header
-}
+import { getHeader } from "../constants/header";
 
 export const editProfile = (body, history, setLoading, clear) => {
     setLoading(true);
@@ -25,7 +15,6 @@ export const editProfile = (body, history, setLoading, clear) => {
     })
     .catch((err) => {
         alert(err.response.data.message);
-        console.log(err.response)
         setLoading(false);
     })
 }
@@ -38,7 +27,6 @@ export const getProfile = (setProfile, setLoading) => {
       setLoading(false)
     })
     .catch((err) => {
-      console.log(err)
       setLoading(false)
     })
 }
