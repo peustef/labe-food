@@ -9,6 +9,8 @@
 ### 4Food - Restaurantes na porta da sua casa!
 Aplicação de serviço de entregas para restaurantes. Desenvolvida em React.js
 
+Projeto desenvolvido em grupo como conslusão do módulo de Frontend do curso de Web Development da escola de programação Labenu.
+
 ## Recursos Utilizados
 - axios
 - react-router-dom
