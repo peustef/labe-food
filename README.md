@@ -6,7 +6,7 @@
 
 
  ## Sobre
-### 4Food - Restaurantes na porta da sua casa
+### 4Food - Restaurantes na porta da sua casa!
 Aplicação de serviço de entregas para restaurantes. Desenvolvida em React.js
 
 ## Recursos Utilizados
