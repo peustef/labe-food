@@ -71,7 +71,7 @@ const EditAddressPage = () => {
                     <TextField
                         type="text"
                         name={"complement"}
-                        value={form.complement}
+                        value={form.complement ? form.complement : ""}
                         onChange={onChange}
                         label="Complemento"
                         placeholder="Apto./Bloco"

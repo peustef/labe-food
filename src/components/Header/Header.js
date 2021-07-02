@@ -3,14 +3,13 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { ContainerHead } from './style';
 import { Button, Typography } from '@material-ui/core';
-import MeetingRoomOutlinedIcon from '@material-ui/icons/MeetingRoomOutlined';
 
 const Header = (props) => {
     return (
         <ContainerHead>
             {props.buttonLeft ?
                 <Button onClick={props.buttonLeft}>
-                    {props.icon === 'back' ? <ChevronLeftIcon fontSize={'large'} /> : <Typography variant={'body3'} color={'primary'}>Logout</Typography>}
+                    {props.icon === 'back' ? <ChevronLeftIcon fontSize={'large'} /> : <Typography variant={'button'} color={'primary'}>Logout</Typography>}
                 </Button> :
                 <Button disabled>
                 </Button>}
