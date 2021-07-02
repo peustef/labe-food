@@ -10,6 +10,7 @@ export const StickFooter = styled.div`
     width: 100%;
     border-top: 1px solid #b8b8b8;
     background-color: #FFFFFF;
+    z-index: 100;
 `
 
 export const StyledIconButton = styled(IconButton)`

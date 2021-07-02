@@ -24,7 +24,7 @@ export const login = (body, history, setLoading) => {
     })
     .catch((err) => {
       setLoading(false);
-      alert("Erro ao fazer Login");
+      alert(err.response.data.message);
     });
 };
 

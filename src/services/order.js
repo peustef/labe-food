@@ -2,15 +2,9 @@ import { BASE_URL } from "../constants/Urls";
 import axios from "axios";
 import { goToHome } from "../routes/coordinator";
 
-const header = {
-  headers: {
-    auth: localStorage.getItem("token"),
-  },
-};
-
 export const placeOrder = (body, history, restaurantId) => {
   axios
-    .post(`${BASE_URL}/restaurants/${restaurantId}/order`, body, header)
+    .post(`${BASE_URL}/restaurants/${restaurantId}/order`, body, getHeader())
     .then((res) => {
       alert("Pedido criado com sucesso!");
       goToHome(history);
@@ -23,7 +17,7 @@ export const placeOrder = (body, history, restaurantId) => {
 export const getOrdersHistory = (setOrders, setLoading) => {
   setLoading(true);
   axios
-    .get(`${BASE_URL}/orders/history`, header)
+    .get(`${BASE_URL}/orders/history`, getHeader())
     .then((res) => {
       setOrders(res.data.orders);
       setLoading(false);

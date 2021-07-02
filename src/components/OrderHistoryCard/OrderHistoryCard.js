@@ -3,6 +3,7 @@ import React from "react";
 import { ContainerCard } from "./style";
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { useContext } from "react";
+import { fixPrice } from '../../constants/functions';
 
 const OrderHistoryCard = () => {
   const { states } = useContext(GlobalStateContext);
@@ -19,7 +20,7 @@ const OrderHistoryCard = () => {
           {order.restaurantName}
         </Typography>
         <Typography variant={"body2"}>{dateConverter(order.createdAt)}</Typography>
-        <Typography variant={"h6"}>SUBTOTAL R${order.totalPrice}</Typography>
+        <Typography variant={"h6"}>SUBTOTAL R${fixPrice(order.totalPrice)}</Typography>
       </ContainerCard>
     );
   });

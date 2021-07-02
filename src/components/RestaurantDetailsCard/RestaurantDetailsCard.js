@@ -8,7 +8,7 @@ import { StyledCard, DeliveryInfosContainer } from "./style";
 const RestaurantDetailsCard = (props) => {
     return (
         
-             <StyledCard >
+             <StyledCard>
         <CardActionArea>
           <CardMedia
             component="img"
