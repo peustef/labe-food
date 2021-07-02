@@ -20,7 +20,7 @@ https://zpl.io/scene/VDdGEYr
 ## Link do Surge
 <a href="https://labe-food2.surge.sh/">https://labe-food2.surge.sh/</a>
 - <b>Login:</b> labefoodteste@gmail.com
- -<b>senha:</b> 123456
+- <b>senha:</b> 123456
 
 ## O que funciona
 - Tarefas principais realizadas
