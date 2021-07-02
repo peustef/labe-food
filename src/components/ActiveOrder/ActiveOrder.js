@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, InfoContainer, Icon } from './style'
-
+import { fixPrice } from '../../constants/functions'
 
 export default function ActiveOrder(props) {
 
@@ -10,7 +10,7 @@ export default function ActiveOrder(props) {
             <InfoContainer>
                 <p>Pedido em andamento</p>
                 <p>{props.name}</p>
-                <h3>SUBTOTAL R${props.price},00</h3>
+                <h3>SUBTOTAL R${fixPrice(props.price)}</h3>
             </InfoContainer>
         </Card>
     )
