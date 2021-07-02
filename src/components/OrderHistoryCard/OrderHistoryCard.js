@@ -15,7 +15,7 @@ const OrderHistoryCard = () => {
 
   const ordersMap = states.ordersHistory.map((order) => {
     return (
-      <ContainerCard>
+      <ContainerCard key={order.createdAt} >
         <Typography variant={"body1"} color={"primary"}>
           {order.restaurantName}
         </Typography>
