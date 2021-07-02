@@ -4,7 +4,7 @@ import RestaurantDetailsCard from "../../components/RestaurantDetailsCard/Restau
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { getRestaurantsDetails } from "../../services/restaurants";
 import ItensCard from "../../components/ItensCard/ItensCard";
-import { ItensCont, MainCont, HR, StyledTypo } from "./style";
+import { ItensCont, MainCont, HR, StyledTypo, ButtonCont } from "./style";
 import Header from "../../components/Header/Header";
 import { goBack, goToChart, goToHome } from "../../routes/coordinator";
 import useProtectedPage from "../../hooks/useProtectedPage";
@@ -75,7 +75,6 @@ const RetaurantPage = () => {
         }
     };
 
-    console.log(states.loading)
     return (
         <MainCont>
             <Header
@@ -85,24 +84,28 @@ const RetaurantPage = () => {
             />
             <div>
                 {states.loading === true ? <Loading /> : null}
-                {states.restaurantDetail.length === 0 ? null : <RestaurantDetailsCard
-                    name={restaurant.name}
-                    category={restaurant.category}
-                    deliveryTime={restaurant.deliveryTime}
-                    logoUrl={restaurant.logoUrl}
-                    shipping={restaurant.shipping}
-                    address={restaurant.address}
-                />}
-                {states.cart.length ? (
-                    <Button
-                        variant={"contained"}
-                        color={"primary"}
-                        onClick={() => {
-                            goToChart(history);
-                        }}
-                    >
-                        Finalizar compra
-                    </Button>
+                {states.restaurantDetail &&
+                    <RestaurantDetailsCard
+                        name={restaurant.name}
+                        category={restaurant.category}
+                        deliveryTime={restaurant.deliveryTime}
+                        logoUrl={restaurant.logoUrl}
+                        shipping={restaurant.shipping}
+                        address={restaurant.address}
+                    />}
+
+                {!states.loading && states.cart.length ? (
+                    <ButtonCont>
+                        <Button
+                            variant={"contained"}
+                            color={"primary"}
+                            onClick={() => {
+                                goToChart(history);
+                            }}
+                        >
+                            Finalizar compra
+                        </Button>
+                    </ButtonCont>
                 ) : (
                     ""
                 )}
