@@ -55,7 +55,7 @@ const SearchPage = () => {
         deliveryTime={restaurant.deliveryTime}
         shipping={restaurant.shipping}
         logoUrl={restaurant.logoUrl}
-        history={history} 
+        history={history}
         id={restaurant.id}
       />
     );

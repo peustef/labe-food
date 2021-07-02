@@ -115,16 +115,17 @@ const HomePage = () => {
       <Box ml={1}>
         <RestaurantTypeTabs />
       </Box>
-      {states.restaurants && states.restaurants.length !== 0 && states.loading === false ? 
-        <ContainerRestaurantCards> 
-              {filteredRestaurantsList.length > 0
-                ? filteredRestaurantsList
-                : restaurantsList}
-              {order()}
+      {states.restaurants && states.restaurants.length !== 0 && states.loading === false ?
+        <ContainerRestaurantCards>
+          {filteredRestaurantsList.length > 0
+            ? filteredRestaurantsList
+            : restaurantsList}
+          {order()}
         </ContainerRestaurantCards>
-      : <Loading />}
+        : <Loading />}
 
       <Footer history={history} colorHome={"primary"} />
+      <GoToTop />
     </div>
   );
 };

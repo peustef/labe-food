@@ -72,7 +72,7 @@ const EditAddressPage = () => {
                         type="text"
                         name={"complement"}
                         value={form.complement}
-                        onChange={onChange}                        
+                        onChange={onChange}
                         label="Complemento"
                         placeholder="Apto./Bloco"
                         variant="outlined"

@@ -33,7 +33,7 @@ const ProfilePage = () => {
   const profile = states.profile;
   const address = states.address;
 
-  const onClickLogout = () =>{
+  const onClickLogout = () => {
     localStorage.removeItem("token")
     goToLogin(history)
   }
@@ -47,7 +47,7 @@ const ProfilePage = () => {
 
   return (
     <div>
-      <Header title={"Meu Perfil"} buttonLeft={() => logout(history)} icon={'exit'}/>
+      <Header title={"Meu Perfil"} buttonLeft={() => logout(history)} icon={'exit'} />
       {states.loading && states.address ? (
         <Loading />
       ) : (

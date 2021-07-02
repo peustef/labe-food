@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import Header from "../../components/Header/Header";
-import { goBack, goToLogin } from "../../routes/coordinator";
+import { goToLogin } from "../../routes/coordinator";
 import useUnprotectedPage from "../../hooks/useUnprotectedPage";
 import useUnprotectedPageSignUpPage from "../../hooks/useUnprotectedSignUpPage";
 import { GlobalStateContext } from "../../global/GlobalStateContext";
@@ -64,7 +64,7 @@ const SignUpPage = () => {
 
   return (
     <Main>
-      <Header buttonLeft={() => goToLogin(history)} icon={'back'}/>
+      <Header buttonLeft={() => goToLogin(history)} icon={'back'} />
       <img src={logo} />
       <strong>
         <p>Cadastrar</p>
