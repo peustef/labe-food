@@ -1,37 +1,46 @@
-import React, { useLayoutEffect, useContext } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
-import RestaurantDetailsCard from '../../components/RestaurantDetailsCard/RestaurantDetailsCard';
+import React, { useLayoutEffect, useContext } from "react";
+import { useHistory, useParams } from "react-router-dom";
+import RestaurantDetailsCard from "../../components/RestaurantDetailsCard/RestaurantDetailsCard";
 import { GlobalStateContext } from "../../global/GlobalStateContext";
-import { getRestaurantsDetails } from '../../services/restaurants';
-import ItensCard from '../../components/ItensCard/ItensCard';
-import { ItensCont, MainCont, HR, StyledTypo } from './style';
-import Header from '../../components/Header/Header';
-import { goBack, goToChart, goToHome } from '../../routes/coordinator';
-import useProtectedPage from '../../hooks/useProtectedPage';
-import Button from '@material-ui/core/Button';
+import { getRestaurantsDetails } from "../../services/restaurants";
+import ItensCard from "../../components/ItensCard/ItensCard";
+import { ItensCont, MainCont, HR, StyledTypo } from "./style";
+import Header from "../../components/Header/Header";
+import { goBack, goToChart, goToHome } from "../../routes/coordinator";
+import useProtectedPage from "../../hooks/useProtectedPage";
+import Button from "@material-ui/core/Button";
+import GoToTop from "../../components/GoToTop/GoToTop";
+import { Loading } from "react-loading-dot/lib";
 
 const RetaurantPage = () => {
     useProtectedPage();
-    const params = useParams()
-    const history = useHistory()
+    const params = useParams();
+    const history = useHistory();
     const { setters, states } = useContext(GlobalStateContext);
 
-    useLayoutEffect(() => {
-        getRestaurantsDetails(setters.setRestaurantDetail, params.id)
-    }, [setters.setRestaurantDetail, params.id])
+    const clearFilter = () => {
+        setters.setRestaurantDetail([]);
+    };
 
-    const restaurant = states.restaurantDetail
-    const categories = []
-    restaurant && restaurant.products && restaurant.products.forEach(item => {
-        categories.push(item.category)
-    })
+    useLayoutEffect(() => {
+        getRestaurantsDetails(setters.setRestaurantDetail, params.id, setters.setLoading);
+        clearFilter();
+    }, [setters.setRestaurantDetail, params.id]);
+
+    const restaurant = states.restaurantDetail;
+    const categories = [];
+    restaurant &&
+        restaurant.products &&
+        restaurant.products.forEach((item) => {
+            categories.push(item.category);
+        });
 
     const filteredList = categories.filter(function (elem, index, self) {
         return index === self.indexOf(elem);
-    })
+    });
 
-    const itensList = filteredList.map(item => {
-        const list = restaurant.products.filter(prod => prod.category === item)
+    const itensList = filteredList.map((item) => {
+        const list = restaurant.products.filter((prod) => prod.category === item);
 
         const productsList = list.map((prod) => {
             return (
@@ -44,25 +53,29 @@ const RetaurantPage = () => {
                     id={prod.id}
                     button={true}
                 />
-            )
-        })
+            );
+        });
 
         return (
             <ItensCont key={item}>
-                <StyledTypo variant="body1" component="h2"> {item} </StyledTypo>
-                <HR/>
+                <StyledTypo variant="body1" component="h2">
+                    {" "}
+                    {item}{" "}
+                </StyledTypo>
+                <HR />
                 {productsList}
             </ItensCont>
-        )
-    })
+        );
+    });
 
     const verifyCart = () => {
         if (window.confirm("Há itens no seu carrinho, gostaria de remove-los?")) {
-            setters.setCart([])
-            goBack(history)
+            setters.setCart([]);
+            goBack(history);
         }
-    }
+    };
 
+    console.log(states.loading)
     return (
         <MainCont>
             <Header
@@ -70,17 +83,33 @@ const RetaurantPage = () => {
                 title={'Restaurante'}
                 icon={'back'}
             />
-            <RestaurantDetailsCard
-                name={restaurant.name}
-                category={restaurant.category}
-                deliveryTime={restaurant.deliveryTime}
-                logoUrl={restaurant.logoUrl}
-                shipping={restaurant.shipping}
-                address={restaurant.address}
-            />
-            {states.cart.length ? <Button variant={'contained'} color={'primary'} onClick={() => { goToChart(history) }} >Finalizar compra</Button> : ""}
-            {itensList}
-        </MainCont >
+            <div>
+                {states.loading === true ? <Loading /> : null}
+                {states.restaurantDetail.length === 0 ? null : <RestaurantDetailsCard
+                    name={restaurant.name}
+                    category={restaurant.category}
+                    deliveryTime={restaurant.deliveryTime}
+                    logoUrl={restaurant.logoUrl}
+                    shipping={restaurant.shipping}
+                    address={restaurant.address}
+                />}
+                {states.cart.length ? (
+                    <Button
+                        variant={"contained"}
+                        color={"primary"}
+                        onClick={() => {
+                            goToChart(history);
+                        }}
+                    >
+                        Finalizar compra
+                    </Button>
+                ) : (
+                    ""
+                )}
+                {itensList}
+            </div>
+            <GoToTop />
+        </MainCont>
     );
 };
 

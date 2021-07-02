@@ -9,6 +9,7 @@ export const MainCont = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
+padding-bottom: 1em;
 `
 
 export const HR = styled.hr`

@@ -8,12 +8,14 @@ import {
   ContainerDetail,
   ContainerOrderHistory,
   ContainerTitleOrder,
+  LogoutButton
 } from "./style";
 import OrderHistoryCard from "../../components/OrderHistoryCard/OrderHistoryCard";
 import Footer from "../../components/Footer/Footer";
 import { useHistory } from "react-router-dom";
 import {
   goToEditAddressPage,
+  goToLogin,
   goToProfileEditPage,
 } from "../../routes/coordinator";
 import useProtectedPage from "../../hooks/useProtectedPage";
@@ -22,6 +24,7 @@ import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { getProfile } from "../../services/profile";
 import { Loading } from "react-loading-dot/lib";
 import { getFullAddress, logout } from "../../services/user";
+import GoToTop from "../../components/GoToTop/GoToTop";
 
 const ProfilePage = () => {
   useProtectedPage();
@@ -29,6 +32,11 @@ const ProfilePage = () => {
   const { states, setters } = useContext(GlobalStateContext);
   const profile = states.profile;
   const address = states.address;
+
+  const onClickLogout = () =>{
+    localStorage.removeItem("token")
+    goToLogin(history)
+  }
 
   useEffect(() => {
     getOrdersHistory(setters.setOrdersHistory, setters.setLoading);
@@ -65,6 +73,7 @@ const ProfilePage = () => {
               <EditOutlinedIcon />
             </Button>
           </ContainerAdress>
+          <LogoutButton onClick={onClickLogout} color='primary'>LOGOUT</LogoutButton>
           <ContainerOrderHistory>
             <ContainerTitleOrder>
               <Typography variant={"body1"}>Histórico de Pedidos</Typography>
@@ -74,6 +83,7 @@ const ProfilePage = () => {
         </div>
       )}
       <Footer history={history} colorProfile={"primary"} />
+      <GoToTop />
     </div>
   );
 };

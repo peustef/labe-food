@@ -30,12 +30,12 @@ export const getOrdersHistory = (setOrders, setLoading) => {
 };
 
 export const getActiveOrders = (setActiveOrder) => {
-    axios.get(`${BASE_URL}/active-order`, getHeader())
-        .then((res) => {
-            setActiveOrder(res.data.order)
-        })
-        .catch((err) => {
-            // alert(err.response.data.message)
-        })
+  axios.get(`${BASE_URL}/active-order`, getHeader())
+    .then((res) => {
+      setActiveOrder(res.data.order)
+    })
+    .catch((err) => {
+      alert(err.response.data.message)
+    })
 }
 

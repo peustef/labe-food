@@ -8,11 +8,12 @@ import { Box } from "@material-ui/core";
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import useInput from "../../hooks/useInput";
 import { useState } from "react";
-import { goBack, goToHome } from "../../routes/coordinator";
+import { goToHome } from "../../routes/coordinator";
 import Header from "../../components/Header/Header";
 import { useHistory } from "react-router-dom";
 import useProtectedPage from "../../hooks/useProtectedPage";
 import { Loading } from 'react-loading-dot'
+import GoToTop from "../../components/GoToTop/GoToTop";
 
 const SearchPage = () => {
   useProtectedPage();
@@ -95,6 +96,7 @@ const SearchPage = () => {
         {search.length === 0 && states.loading === false ? <p>Busque por nome de restaurante</p> : null}
         {search ? filteredState : null}
       </ContainerRestaurantCards>
+      <GoToTop />
     </div>
   );
 };

@@ -5,6 +5,12 @@ export const ContainerCart = styled.div`
     flex-direction: column;
 `
 
+export const ButtonCont = styled.div`
+    display: flex;
+    justify-content: center;
+    padding-top: 1em;
+`
+
 export const ContainerAdress = styled.div`
     display: flex;
     flex-direction: column;

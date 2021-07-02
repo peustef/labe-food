@@ -11,7 +11,7 @@ Nome dos integrantes:
 - Rodrigo Brezolin Buquera
 
 
-Link do Surge: 
+Link do Surge: https://labe-food2.surge.sh/
 
 O que funciona: 
 -
@@ -26,14 +26,14 @@ O que funciona:
 - Página home:
   - 
 
-- Página carrinho
-  - 
-
 - Página restaurante
-  - Adição (no layout proposto) de um botão para ir diretamente ao carrinho, reduzindo o percurso que o(a) usuário(a) precisa fazer e desistimulando que ele(a) tente adicionar itens de restaurantes diferentes no carrinho (o que não é possível). 
+  - Adição (do layout proposto) de um botão para ir diretamente ao carrinho, reduzindo o percurso que o(a) usuário(a) precisa fazer e desistimulando que ele(a) tente adicionar itens de restaurantes diferentes no carrinho (o que não é possível). 
+  
+- Página carrinho
+  - Adição (do layout proposto) de um botão para voltar ao restaurante e continuar adicionando.
 
 - Página perfil
-  - 
+  - Adição (do layout proposto) de um botão de logout 
 
 - Página editar perfil:
   - 
