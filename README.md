@@ -13,7 +13,7 @@ Nome dos integrantes:
 
 Link do Surge: https://labe-food2.surge.sh/
 
-Login:
+Login-
 usuário: labefoodteste@gmail.com
 senha: 123456
 
