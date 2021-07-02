@@ -15,17 +15,17 @@ import { Redirect } from "react-router";
 import SplashPage from '../pages/SplashPage/SplashPage';
 
 const Router = () => {
-  const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token')
     return (
         <BrowserRouter>
             <Switch>
-            <Route exact path="/">
-                <SplashPage />
-          {/* {token ? <Redirect to="/home" /> : <Redirect to="/login" />} */}
-        </Route>
-        <Route exact path="/home">
-            <HomePage />
-        </Route>
+                <Route exact path="/">
+                    <SplashPage />
+                    {/* {token ? <Redirect to="/home" /> : <Redirect to="/login" />} */}
+                </Route>
+                <Route exact path="/home">
+                    <HomePage />
+                </Route>
                 <Route exact path={'/login'}>
                     <LoginPage />
                 </Route>

@@ -33,8 +33,7 @@ const LoginPage = () => {
 
     const submitLogin = (e) => {
         e.preventDefault()
-        login(form, history, setters.setLoading)
-        clear()
+        login(form, history, setters.setLoading, clear)
     }
 
     return (
@@ -51,7 +50,6 @@ const LoginPage = () => {
                     label="E-mail"
                     placeholder='email@email.com'
                     variant="outlined"
-                    margin={'10'}
                     required
                 />
                 <InputPassword variant="outlined">
@@ -62,7 +60,6 @@ const LoginPage = () => {
                         type={form.showPassword ? 'text' : 'password'}
                         value={form.password}
                         onChange={onChange}
-                        margin={'10px'}
                         placeholder={'Mínimo 6 caracteres'}
                         required
                         endAdornment={

@@ -13,7 +13,7 @@ export const getHeader = () => {
   return header;
 };
 
-export const login = (body, history, setLoading) => {
+export const login = (body, history, setLoading, clear) => {
   setLoading(true);
   axios
     .post(`${BASE_URL}/login`, body)
@@ -21,6 +21,7 @@ export const login = (body, history, setLoading) => {
       localStorage.setItem("token", res.data.token);
       setLoading(false);
       goToHome(history);
+      clear()
     })
     .catch((err) => {
       setLoading(false);
