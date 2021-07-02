@@ -23,7 +23,7 @@ import { getOrdersHistory } from "../../services/order";
 import { GlobalStateContext } from "../../global/GlobalStateContext";
 import { getProfile } from "../../services/profile";
 import { Loading } from "react-loading-dot/lib";
-import { getFullAddress } from "../../services/user";
+import { getFullAddress, logout } from "../../services/user";
 import GoToTop from "../../components/GoToTop/GoToTop";
 
 const ProfilePage = () => {
@@ -47,7 +47,7 @@ const ProfilePage = () => {
 
   return (
     <div>
-      <Header title={"Meu Perfil"} />
+      <Header title={"Meu Perfil"} buttonLeft={() => logout(history)} icon={'exit'}/>
       {states.loading && states.address ? (
         <Loading />
       ) : (

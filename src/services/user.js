@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getHeader } from "../constants/header";
 import { BASE_URL } from "../constants/Urls";
-import { goToHome, goToProfile, goToSignUpAdress } from "../routes/coordinator";
+import { goToHome, goToLogin, goToProfile, goToSignUpAdress } from "../routes/coordinator";
 
 
 export const login = (body, history, setLoading, clear) => {
@@ -97,6 +97,7 @@ export const getFullAddress = (setter, setLoading) => {
     });
 };
 
-export const logout = () => {
+export const logout = (history) => {
   localStorage.removeItem("token");
+  goToLogin(history)
 };

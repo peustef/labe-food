@@ -38,6 +38,7 @@ const ProfileEditPage = () => {
             <Header
                 buttonLeft={() => goToProfile(history)}
                 title={'Editar Perfil'}
+                icon={'back'}
             />
             <ContainerForm onSubmit={onSubmitForm}>
                 <Input

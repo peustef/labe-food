@@ -13,105 +13,104 @@ import GoToTop from "../../components/GoToTop/GoToTop";
 import { Loading } from "react-loading-dot/lib";
 
 const RetaurantPage = () => {
-  useProtectedPage();
-  const params = useParams();
-  const history = useHistory();
-  const { setters, states } = useContext(GlobalStateContext);
+    useProtectedPage();
+    const params = useParams();
+    const history = useHistory();
+    const { setters, states } = useContext(GlobalStateContext);
 
-  const clearFilter = () => {
-    setters.setRestaurantDetail([]);
-  };
+    const clearFilter = () => {
+        setters.setRestaurantDetail([]);
+    };
 
-  useLayoutEffect(() => {
-    getRestaurantsDetails(setters.setRestaurantDetail, params.id, setters.setLoading);
-    clearFilter();
-  }, [setters.setRestaurantDetail, params.id]);
+    useLayoutEffect(() => {
+        getRestaurantsDetails(setters.setRestaurantDetail, params.id, setters.setLoading);
+        clearFilter();
+    }, [setters.setRestaurantDetail, params.id]);
 
-  const restaurant = states.restaurantDetail;
-  const categories = [];
-  restaurant &&
-    restaurant.products &&
-    restaurant.products.forEach((item) => {
-      categories.push(item.category);
+    const restaurant = states.restaurantDetail;
+    const categories = [];
+    restaurant &&
+        restaurant.products &&
+        restaurant.products.forEach((item) => {
+            categories.push(item.category);
+        });
+
+    const filteredList = categories.filter(function (elem, index, self) {
+        return index === self.indexOf(elem);
     });
 
-  const filteredList = categories.filter(function (elem, index, self) {
-    return index === self.indexOf(elem);
-  });
+    const itensList = filteredList.map((item) => {
+        const list = restaurant.products.filter((prod) => prod.category === item);
 
-  const itensList = filteredList.map((item) => {
-    const list = restaurant.products.filter((prod) => prod.category === item);
+        const productsList = list.map((prod) => {
+            return (
+                <ItensCard
+                    key={prod.id}
+                    name={prod.name}
+                    description={prod.description}
+                    photoUrl={prod.photoUrl}
+                    price={prod.price}
+                    id={prod.id}
+                    button={true}
+                />
+            );
+        });
 
-    const productsList = list.map((prod) => {
-      return (
-        <ItensCard
-          key={prod.id}
-          name={prod.name}
-          description={prod.description}
-          photoUrl={prod.photoUrl}
-          price={prod.price}
-          id={prod.id}
-          button={true}
-        />
-      );
+        return (
+            <ItensCont key={item}>
+                <StyledTypo variant="body1" component="h2">
+                    {" "}
+                    {item}{" "}
+                </StyledTypo>
+                <HR />
+                {productsList}
+            </ItensCont>
+        );
     });
 
-    return (
-      <ItensCont key={item}>
-        <StyledTypo variant="body1" component="h2">
-          {" "}
-          {item}{" "}
-        </StyledTypo>
-        <HR />
-        {productsList}
-      </ItensCont>
-    );
-  });
-
-  const verifyCart = () => {
-    if (window.confirm("Há itens no seu carrinho, gostaria de remove-los?")) {
-      setters.setCart([]);
-      goBack(history);
-    }
-  };
-
-  console.log(states.loading)
-  return (
-    <MainCont>
-      <Header
-        buttonLeft={
-          states.cart.length ? () => verifyCart() : () => goToHome(history)
+    const verifyCart = () => {
+        if (window.confirm("Há itens no seu carrinho, gostaria de remove-los?")) {
+            setters.setCart([]);
+            goBack(history);
         }
-        title={"Restaurante"}
-      />
-      <div>
-        {states.loading === true ? <Loading /> : null}
-        {states.restaurantDetail.length === 0 ? null : <RestaurantDetailsCard
-          name={restaurant.name}
-          category={restaurant.category}
-          deliveryTime={restaurant.deliveryTime}
-          logoUrl={restaurant.logoUrl}
-          shipping={restaurant.shipping}
-          address={restaurant.address}
-        />}
-        {states.cart.length ? (
-          <Button
-            variant={"contained"}
-            color={"primary"}
-            onClick={() => {
-              goToChart(history);
-            }}
-          >
-            Finalizar compra
-          </Button>
-        ) : (
-          ""
-        )}
-        {itensList}
-      </div>
-      <GoToTop />
-    </MainCont>
-  );
+    };
+
+    console.log(states.loading)
+    return (
+        <MainCont>
+            <Header
+                buttonLeft={states.cart.length ? () => verifyCart() : () => goToHome(history)}
+                title={'Restaurante'}
+                icon={'back'}
+            />
+            <div>
+                {states.loading === true ? <Loading /> : null}
+                {states.restaurantDetail.length === 0 ? null : <RestaurantDetailsCard
+                    name={restaurant.name}
+                    category={restaurant.category}
+                    deliveryTime={restaurant.deliveryTime}
+                    logoUrl={restaurant.logoUrl}
+                    shipping={restaurant.shipping}
+                    address={restaurant.address}
+                />}
+                {states.cart.length ? (
+                    <Button
+                        variant={"contained"}
+                        color={"primary"}
+                        onClick={() => {
+                            goToChart(history);
+                        }}
+                    >
+                        Finalizar compra
+                    </Button>
+                ) : (
+                    ""
+                )}
+                {itensList}
+            </div>
+            <GoToTop />
+        </MainCont>
+    );
 };
 
 export default RetaurantPage;

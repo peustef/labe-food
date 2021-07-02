@@ -40,6 +40,7 @@ const EditAddressPage = () => {
             <Header
                 buttonLeft={() => goToProfile(history)}
                 title={'Endereço'}
+                icon={'back'}
             />
             <form onSubmit={onSubmitForm}>
                 <Grid>
