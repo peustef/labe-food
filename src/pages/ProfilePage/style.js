@@ -1,6 +1,21 @@
 import { Button } from "@material-ui/core";
 import styled from "styled-components";
 
+
+export const LogoutButton = styled.button`
+    margin-left:10px;
+    border:none;
+    outline:none;
+    font-family:'Roboto';
+    color:#e8222e;
+    background-color:transparent;
+    margin-top:4px;
+    font-weight:bolder;
+    :focus{
+        text-decoration:underline;
+    }
+`
+
 export const ContainerAdress = styled.div`
     display: flex;
     justify-content: space-between;

@@ -8,12 +8,14 @@ import {
   ContainerDetail,
   ContainerOrderHistory,
   ContainerTitleOrder,
+  LogoutButton
 } from "./style";
 import OrderHistoryCard from "../../components/OrderHistoryCard/OrderHistoryCard";
 import Footer from "../../components/Footer/Footer";
 import { useHistory } from "react-router-dom";
 import {
   goToEditAddressPage,
+  goToLogin,
   goToProfileEditPage,
 } from "../../routes/coordinator";
 import useProtectedPage from "../../hooks/useProtectedPage";
@@ -29,6 +31,11 @@ const ProfilePage = () => {
   const { states, setters } = useContext(GlobalStateContext);
   const profile = states.profile;
   const address = states.address;
+
+  const onClickLogout = () =>{
+    localStorage.removeItem("token")
+    goToLogin(history)
+  }
 
   useEffect(() => {
     getOrdersHistory(setters.setOrdersHistory, setters.setLoading);
@@ -65,6 +72,7 @@ const ProfilePage = () => {
               <EditOutlinedIcon />
             </Button>
           </ContainerAdress>
+          <LogoutButton onClick={onClickLogout} color='primary'>LOGOUT</LogoutButton>
           <ContainerOrderHistory>
             <ContainerTitleOrder>
               <Typography variant={"body1"}>Histórico de Pedidos</Typography>
