@@ -54,7 +54,7 @@ export default function ItemDialog(props) {
   const product = selectItem[0]
 
   const sum = () => {
-    const sum = props.price * (select ? select : 1) 
+    const sum = props.price * (select ? select : 1)
     setters.setTotalValue(states.totalValue + sum)
   }
 
